@@ -1,0 +1,104 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* FONT */
+body {
+  font-family: 'Inter', sans-serif;
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* SCROLL SNAP */
+html {
+  scroll-snap-type: y mandatory;
+}
+
+.panel {
+  height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 5vw;
+  overflow: hidden;
+}
+
+/* BACKGROUND IMAGE */
+.panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.1);
+  transition: transform 1.5s ease;
+  z-index: 0;
+}
+
+/* DARK OVERLAY */
+.panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.2));
+  z-index: 1;
+}
+
+/* ACTIVE ZOOM EFFECT */
+.panel.active::before {
+  transform: scale(1) translateY(-10px);
+}
+
+/* CONTENT */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+/* REVEAL */
+.panel.active .content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* TYPOGRAPHY */
+h1 {
+  font-size: clamp(3rem, 8vw, 8rem);
+  line-height: 0.9;
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  margin-bottom: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  border-bottom: 1px solid white;
+  padding-bottom: 3px;
+}
+
+/* BACKGROUNDS */
+.hero::before { background-image: url('assets/photos/section_1/sea-big.webp'); }
+.odontotos::before { background-image: url('assets/photos/section_2/train_big.webp'); }
+.gorge::before { background-image: url('assets/photos/section_3/f_big.webp'); }
+.beaches::before { background-image: url('assets/photos/section_4/beach_big.webp'); }
+.local::before { background-image: url('assets/photos/section_5/zoi-big.webp'); }
+.outro::before { background-image: url('assets/photos/section_6/last_photo_big.webp'); }
