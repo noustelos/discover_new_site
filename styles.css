@@ -77,6 +77,50 @@ h1 {
   line-height: 0.9;
 }
 
+.hero .content {
+  max-width: min(94vw, 980px);
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 7.2vw, 7.2rem);
+  line-height: 0.9;
+  white-space: nowrap;
+}
+
+.hero-title span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px) scale(1.1);
+  filter: blur(10px);
+}
+
+/* ACTIVE STATE */
+.panel.hero.active .hero-title span {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* STAGGER */
+.hero-title span:nth-of-type(1) { transition: all 0.8s ease 0.05s; }
+.hero-title span:nth-of-type(2) { transition: all 0.8s ease 0.1s; }
+.hero-title span:nth-of-type(3) { transition: all 0.8s ease 0.15s; }
+.hero-title span:nth-of-type(4) { transition: all 0.8s ease 0.2s; }
+.hero-title span:nth-of-type(5) { transition: all 0.8s ease 0.25s; }
+.hero-title span:nth-of-type(6) { transition: all 0.8s ease 0.3s; }
+.hero-title span:nth-of-type(7) { transition: all 0.8s ease 0.35s; }
+.hero-title span:nth-of-type(8) { transition: all 0.8s ease 0.4s; }
+
+/* second line continues delay */
+.hero-title span:nth-of-type(9) { transition: all 0.8s ease 0.5s; }
+.hero-title span:nth-of-type(10) { transition: all 0.8s ease 0.55s; }
+.hero-title span:nth-of-type(11) { transition: all 0.8s ease 0.6s; }
+.hero-title span:nth-of-type(12) { transition: all 0.8s ease 0.65s; }
+.hero-title span:nth-of-type(13) { transition: all 0.8s ease 0.7s; }
+.hero-title span:nth-of-type(14) { transition: all 0.8s ease 0.75s; }
+.hero-title span:nth-of-type(15) { transition: all 0.8s ease 0.8s; }
+.hero-title span:nth-of-type(16) { transition: all 0.8s ease 0.85s; }
+
 h2 {
   font-size: clamp(2rem, 5vw, 4rem);
   margin-bottom: 1rem;
@@ -102,3 +146,18 @@ a {
 .beaches::before { background-image: url('assets/photos/section_4/beach_big.webp'); }
 .local::before { background-image: url('assets/photos/section_5/zoi-big.webp'); }
 .outro::before { background-image: url('assets/photos/section_6/last_photo_big.webp'); }
+
+.hero::before {
+  transform: scale(1.2);
+  transition: transform 6s ease;
+}
+
+.panel.hero.active::before {
+  transform: scale(1);
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: clamp(2rem, 11.5vw, 4.6rem);
+  }
+}
