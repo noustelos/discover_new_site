@@ -6,10 +6,26 @@ const diakoptoForecastEl = document.getElementById('diakopto-forecast');
 const diakoptoSunEl = document.getElementById('diakopto-sun');
 const diakoptoWeatherSymbolEl = document.getElementById('diakopto-weather-symbol');
 const diakoptoForecast3El = document.getElementById('diakopto-forecast3');
+const gorgeTempEl = document.getElementById('gorge-temp');
+const gorgeForecastEl = document.getElementById('gorge-forecast');
+const gorgeWeatherSymbolEl = document.getElementById('gorge-weather-symbol');
+const beachesTempEl = document.getElementById('beaches-temp');
+const beachesForecastEl = document.getElementById('beaches-forecast');
+const beachesWeatherSymbolEl = document.getElementById('beaches-weather-symbol');
 
 const DIAKOPTO_COORDS = {
   lat: 38.191,
   lon: 22.201,
+};
+
+const VOURAIKOS_GORGE_COORDS = {
+  lat: 38.089,
+  lon: 22.166,
+};
+
+const EGKALI_BEACH_COORDS = {
+  lat: 38.173,
+  lon: 22.160,
 };
 const HERO_BACKGROUND_SRC = 'assets/photos/section_1/sea-big.webp';
 
@@ -264,6 +280,86 @@ async function updateDiakoptoWeatherData() {
   }
 }
 
+async function updateGorgeWeatherData() {
+  if (!gorgeTempEl || !gorgeForecastEl || !gorgeWeatherSymbolEl) {
+    return;
+  }
+
+  try {
+    const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${VOURAIKOS_GORGE_COORDS.lat}&longitude=${VOURAIKOS_GORGE_COORDS.lon}&current=temperature_2m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Europe%2FAthens`;
+    const response = await fetch(apiUrl, { cache: 'no-store' });
+
+    if (!response.ok) {
+      throw new Error(`Weather API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    const temperature = data?.current?.temperature_2m;
+    const weatherCode = data?.daily?.weather_code?.[0];
+    const maxTemp = data?.daily?.temperature_2m_max?.[0];
+    const minTemp = data?.daily?.temperature_2m_min?.[0];
+    const weatherSymbolKey = getWeatherSymbol(weatherCode);
+
+    if (typeof temperature !== 'number') {
+      throw new Error('Temperature is missing from API response');
+    }
+
+    gorgeTempEl.textContent = `${temperature.toFixed(1)}°C`;
+    gorgeWeatherSymbolEl.innerHTML = getWeatherIconSvg(weatherSymbolKey);
+
+    if (typeof maxTemp === 'number' && typeof minTemp === 'number') {
+      const forecastLabel = removeAccentsFromGreekCapitals(getWeatherLabel(weatherCode));
+      gorgeForecastEl.textContent = `${forecastLabel} (${minTemp.toFixed(0)}°/${maxTemp.toFixed(0)}°)`;
+    } else {
+      gorgeForecastEl.textContent = 'N/A';
+    }
+  } catch (error) {
+    gorgeTempEl.textContent = 'N/A';
+    gorgeForecastEl.textContent = 'N/A';
+    gorgeWeatherSymbolEl.innerHTML = getWeatherIconSvg('partly');
+  }
+}
+
+async function updateBeachesWeatherData() {
+  if (!beachesTempEl || !beachesForecastEl || !beachesWeatherSymbolEl) {
+    return;
+  }
+
+  try {
+    const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${EGKALI_BEACH_COORDS.lat}&longitude=${EGKALI_BEACH_COORDS.lon}&current=temperature_2m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Europe%2FAthens`;
+    const response = await fetch(apiUrl, { cache: 'no-store' });
+
+    if (!response.ok) {
+      throw new Error(`Weather API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    const temperature = data?.current?.temperature_2m;
+    const weatherCode = data?.daily?.weather_code?.[0];
+    const maxTemp = data?.daily?.temperature_2m_max?.[0];
+    const minTemp = data?.daily?.temperature_2m_min?.[0];
+    const weatherSymbolKey = getWeatherSymbol(weatherCode);
+
+    if (typeof temperature !== 'number') {
+      throw new Error('Temperature is missing from API response');
+    }
+
+    beachesTempEl.textContent = `${temperature.toFixed(1)}°C`;
+    beachesWeatherSymbolEl.innerHTML = getWeatherIconSvg(weatherSymbolKey);
+
+    if (typeof maxTemp === 'number' && typeof minTemp === 'number') {
+      const forecastLabel = removeAccentsFromGreekCapitals(getWeatherLabel(weatherCode));
+      beachesForecastEl.textContent = `${forecastLabel} (${minTemp.toFixed(0)}°/${maxTemp.toFixed(0)}°)`;
+    } else {
+      beachesForecastEl.textContent = 'N/A';
+    }
+  } catch (error) {
+    beachesTempEl.textContent = 'N/A';
+    beachesForecastEl.textContent = 'N/A';
+    beachesWeatherSymbolEl.innerHTML = getWeatherIconSvg('partly');
+  }
+}
+
 window.addEventListener('load', () => {
   activateHeroWhenBackgroundReady();
 
@@ -271,11 +367,23 @@ window.addEventListener('load', () => {
     diakoptoWeatherSymbolEl.innerHTML = getWeatherIconSvg('partly');
   }
 
+  if (gorgeWeatherSymbolEl) {
+    gorgeWeatherSymbolEl.innerHTML = getWeatherIconSvg('partly');
+  }
+
+  if (beachesWeatherSymbolEl) {
+    beachesWeatherSymbolEl.innerHTML = getWeatherIconSvg('partly');
+  }
+
   updateDiakoptoClock();
   updateDiakoptoWeatherData();
+  updateGorgeWeatherData();
+  updateBeachesWeatherData();
 
   setInterval(updateDiakoptoClock, 1000);
   setInterval(updateDiakoptoWeatherData, 30 * 60 * 1000);
+  setInterval(updateGorgeWeatherData, 30 * 60 * 1000);
+  setInterval(updateBeachesWeatherData, 30 * 60 * 1000);
 });
 
 const observer = new IntersectionObserver((entries) => {

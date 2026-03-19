@@ -322,6 +322,114 @@ h1 {
   line-height: 1.28;
 }
 
+.gorge .content,
+.beaches .content {
+  max-width: min(94vw, 1040px);
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) auto;
+  column-gap: clamp(1rem, 3vw, 2.2rem);
+  align-items: start;
+}
+
+.gorge .content h2,
+.gorge .content p,
+.gorge .content a,
+.beaches .content h2,
+.beaches .content p,
+.beaches .content a {
+  grid-column: 1;
+}
+
+.gorge-live,
+.beaches-live {
+  margin-top: 0;
+  grid-column: 2;
+  grid-row: 1 / span 3;
+  justify-self: end;
+  align-self: start;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.36rem;
+  padding: 0.66rem 0.7rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background:
+    radial-gradient(120% 120% at 8% 0%, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.03) 34%, rgba(18, 28, 42, 0.28) 100%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.02));
+  background-color: rgba(20, 28, 40, 0.14);
+  backdrop-filter: blur(10px) saturate(1.22);
+  -webkit-backdrop-filter: blur(10px) saturate(1.22);
+  box-shadow: 0 14px 28px rgba(2, 8, 20, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  max-width: min(92vw, 340px);
+}
+
+.gorge-live-row,
+.beaches-live-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.2rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.gorge-live-row:last-of-type,
+.beaches-live-row:last-of-type {
+  border-bottom: 0;
+}
+
+.gorge-live-icon,
+.beaches-live-icon {
+  width: 1.35rem;
+  text-align: center;
+  line-height: 0;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.gorge-live-icon .icon-svg,
+.beaches-live-icon .icon-svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.gorge-live strong,
+.beaches-live strong {
+  font-size: 0.95rem;
+  font-weight: 550;
+  letter-spacing: 0.01em;
+}
+
+.gorge-link,
+.beaches-link {
+  align-self: stretch;
+  margin-top: 0.14rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.28rem 0.52rem;
+  font-size: 0.78rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.34);
+  border-bottom: 0;
+  color: rgba(255, 255, 255, 0.96);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+}
+
+.gorge-link:hover,
+.gorge-link:focus-visible,
+.beaches-link:hover,
+.beaches-link:focus-visible {
+  color: #fff;
+  transform: translateY(-1px) scale(1.01);
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.08));
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
 h2 {
   font-size: clamp(2rem, 5vw, 4rem);
   margin-bottom: 1rem;
@@ -409,6 +517,21 @@ a {
     min-width: 0;
     width: min(100%, 430px);
     border-radius: 16px;
+  }
+
+  .gorge .content,
+  .beaches .content {
+    display: block;
+    width: auto;
+    max-width: 600px;
+  }
+
+  .gorge-live,
+  .beaches-live {
+    margin-top: 0.9rem;
+    grid-column: auto;
+    grid-row: auto;
+    justify-self: start;
   }
 
   .metric-row {
