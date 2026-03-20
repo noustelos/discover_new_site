@@ -24,10 +24,13 @@
     <main>
       <section class="panel hero" aria-label="Hero section">
         <div class="content">
-          <h1 class="hero-title">
-            <span>D</span><span>I</span><span>S</span><span>C</span><span>O</span><span>V</span><span>E</span><span>R</span><br />
-            <span>D</span><span>I</span><span>A</span><span>K</span><span>O</span><span>P</span><span>T</span><span>O</span>
-          </h1>
+          <div class="hero-copy">
+            <h1 class="hero-title">
+              <span>D</span><span>I</span><span>S</span><span>C</span><span>O</span><span>V</span><span>E</span><span>R</span><br />
+              <span>D</span><span>I</span><span>A</span><span>K</span><span>O</span><span>P</span><span>T</span><span>O</span>
+            </h1>
+            <p class="hero-subtitle" id="hero-subtitle">Ανακαλύψτε το Διακοπτό Αχαΐας! Ο ταξιδιωτικός οδηγός για τον παραθαλάσσιο οικισμό, τις παραλίες του Κορινθιακού και τη διαδρομή με τον Οδοντωτό στο φαράγγι του Βουραϊκού ποταμού.</p>
+          </div>
           <div class="hero-live control-panel" aria-live="polite">
             <div class="metric-row metric-row-centered-value">
               <div class="metric-meta">
@@ -114,142 +117,154 @@
 
       <section class="panel odontotos" aria-label="Odontotos Railway section">
         <div class="content">
-          <h2 id="odontotos-title">Odontotos Railway</h2>
-          <p id="odontotos-subtitle">A journey carved into the mountain.</p>
-          <a href="#" id="odontotos-discover">→ Discover</a>
-          <div class="odontotos-live control-panel" aria-live="polite">
-            <div class="odontotos-live-row">
-              <span class="odontotos-live-icon" aria-hidden="true">
-                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="3" y="5" width="18" height="16" rx="3" stroke="currentColor" stroke-width="1.7"/>
-                  <path d="M8 3.5V7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                  <path d="M16 3.5V7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                  <path d="M3 10H21" stroke="currentColor" stroke-width="1.7"/>
-                </svg>
-              </span>
-              <strong id="odontotos-date">--</strong>
+          <div class="odontotos-copy-panel">
+            <h2 id="odontotos-title">Odontotos Railway</h2>
+            <p id="odontotos-subtitle">A journey carved into the mountain.</p>
+          </div>
+          <div class="odontotos-side">
+            <div class="odontotos-live control-panel" aria-live="polite">
+              <div class="odontotos-live-row">
+                <span class="odontotos-live-icon" aria-hidden="true">
+                  <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3" y="5" width="18" height="16" rx="3" stroke="currentColor" stroke-width="1.7"/>
+                    <path d="M8 3.5V7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                    <path d="M16 3.5V7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                    <path d="M3 10H21" stroke="currentColor" stroke-width="1.7"/>
+                  </svg>
+                </span>
+                <strong id="odontotos-date">--</strong>
+              </div>
+              <div class="odontotos-live-row">
+                <span class="odontotos-live-icon" aria-hidden="true">
+                  <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 6.2V14.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                    <rect x="9.3" y="3.6" width="5.4" height="12.4" rx="2.7" stroke="currentColor" stroke-width="1.7"/>
+                    <circle cx="12" cy="18" r="3.4" stroke="currentColor" stroke-width="1.7"/>
+                  </svg>
+                </span>
+                <strong id="odontotos-temp">--.-°C</strong>
+              </div>
+              <div class="odontotos-live-row">
+                <span class="odontotos-live-icon metric-weather-icon" id="odontotos-weather-symbol" aria-hidden="true"></span>
+                <a class="metric-value metric-link" id="odontotos-forecast" href="https://weather.com/weather/tenday/l/38.035,22.110" target="_blank" rel="noopener noreferrer" aria-label="Odontotos weekly weather forecast">--</a>
+              </div>
+              <div class="odontotos-actions">
+                <a class="metric-value metric-link maps-action" id="odontotos-maps" href="https://www.google.com/maps/search/?api=1&query=Odontotos+Railway+Vouraikos+Gorge" target="_blank" rel="noopener noreferrer" aria-label="Google Maps route">GOOGLE MAPS</a>
+                <a class="metric-value metric-link train-action" id="odontotos-tickets" href="https://newtickets.hellenictrain.gr/Channels.HellenicTrainWeb/" target="_blank" rel="noopener noreferrer" aria-label="Tickets">TICKETS</a>
+                <a class="metric-value metric-link info-action" id="odontotos-station" href="tel:+302691043206" aria-label="Call Diakopto Station" title="Diakopto Station">Diakopto Station</a>
+              </div>
             </div>
-            <div class="odontotos-live-row">
-              <span class="odontotos-live-icon" aria-hidden="true">
-                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 6.2V14.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                  <rect x="9.3" y="3.6" width="5.4" height="12.4" rx="2.7" stroke="currentColor" stroke-width="1.7"/>
-                  <circle cx="12" cy="18" r="3.4" stroke="currentColor" stroke-width="1.7"/>
-                </svg>
-              </span>
-              <strong id="odontotos-temp">--.-°C</strong>
-            </div>
-            <div class="odontotos-live-row">
-              <span class="odontotos-live-icon metric-weather-icon" id="odontotos-weather-symbol" aria-hidden="true"></span>
-              <a class="metric-value metric-link" id="odontotos-forecast" href="https://weather.com/weather/tenday/l/38.035,22.110" target="_blank" rel="noopener noreferrer" aria-label="Odontotos weekly weather forecast">--</a>
-            </div>
-            <div class="odontotos-actions">
-              <a class="metric-value metric-link maps-action" id="odontotos-maps" href="https://www.google.com/maps/search/?api=1&query=Odontotos+Railway+Vouraikos+Gorge" target="_blank" rel="noopener noreferrer" aria-label="Google Maps route">GOOGLE MAPS</a>
-              <a class="metric-value metric-link train-action" id="odontotos-tickets" href="https://newtickets.hellenictrain.gr/Channels.HellenicTrainWeb/" target="_blank" rel="noopener noreferrer" aria-label="Tickets">TICKETS</a>
-              <a class="metric-value metric-link info-action" id="odontotos-station" href="tel:+302691043206" aria-label="Call Diakopto Station" title="Diakopto Station">Diakopto Station</a>
-            </div>
+            <a href="#" id="odontotos-discover">→ Discover</a>
           </div>
         </div>
       </section>
 
       <section class="panel gorge" aria-label="Vouraikos Gorge section">
         <div class="content">
-          <h2 id="gorge-title">Vouraikos Gorge</h2>
-          <p id="gorge-subtitle">Where silence becomes landscape.</p>
-          <a href="#" id="gorge-discover">→ Discover</a>
-          <div class="gorge-live control-panel" aria-live="polite">
-            <div class="gorge-live-row">
-              <span class="gorge-live-icon" aria-hidden="true">
-                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="3" y="5" width="18" height="16" rx="3" stroke="currentColor" stroke-width="1.7"/>
-                  <path d="M8 3.5V7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                  <path d="M16 3.5V7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                  <path d="M3 10H21" stroke="currentColor" stroke-width="1.7"/>
-                </svg>
-              </span>
-              <strong id="gorge-date">--</strong>
+          <div class="gorge-copy-panel">
+            <h2 id="gorge-title">Vouraikos Gorge</h2>
+            <p id="gorge-subtitle">Where silence becomes landscape.</p>
+          </div>
+          <div class="gorge-side">
+            <div class="gorge-live control-panel" aria-live="polite">
+              <div class="gorge-live-row">
+                <span class="gorge-live-icon" aria-hidden="true">
+                  <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3" y="5" width="18" height="16" rx="3" stroke="currentColor" stroke-width="1.7"/>
+                    <path d="M8 3.5V7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                    <path d="M16 3.5V7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                    <path d="M3 10H21" stroke="currentColor" stroke-width="1.7"/>
+                  </svg>
+                </span>
+                <strong id="gorge-date">--</strong>
+              </div>
+              <div class="gorge-live-row">
+                <span class="gorge-live-icon" aria-hidden="true">
+                  <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 6.2V14.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                    <rect x="9.3" y="3.6" width="5.4" height="12.4" rx="2.7" stroke="currentColor" stroke-width="1.7"/>
+                    <circle cx="12" cy="18" r="3.4" stroke="currentColor" stroke-width="1.7"/>
+                  </svg>
+                </span>
+                <strong id="gorge-temp">--.-°C</strong>
+              </div>
+              <div class="gorge-live-row">
+                <span class="gorge-live-icon metric-weather-icon" id="gorge-weather-symbol" aria-hidden="true"></span>
+                <a class="metric-value metric-link" id="gorge-forecast" href="https://weather.com/weather/tenday/l/38.089,22.166" target="_blank" rel="noopener noreferrer" aria-label="Vouraikos Gorge weekly weather forecast">--</a>
+              </div>
+              <a class="gorge-link" id="gorge-maps" href="https://www.google.com/maps?q=38.089,22.166" target="_blank" rel="noopener noreferrer">Google Maps ↗</a>
             </div>
-            <div class="gorge-live-row">
-              <span class="gorge-live-icon" aria-hidden="true">
-                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 6.2V14.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                  <rect x="9.3" y="3.6" width="5.4" height="12.4" rx="2.7" stroke="currentColor" stroke-width="1.7"/>
-                  <circle cx="12" cy="18" r="3.4" stroke="currentColor" stroke-width="1.7"/>
-                </svg>
-              </span>
-              <strong id="gorge-temp">--.-°C</strong>
-            </div>
-            <div class="gorge-live-row">
-              <span class="gorge-live-icon metric-weather-icon" id="gorge-weather-symbol" aria-hidden="true"></span>
-              <a class="metric-value metric-link" id="gorge-forecast" href="https://weather.com/weather/tenday/l/38.089,22.166" target="_blank" rel="noopener noreferrer" aria-label="Vouraikos Gorge weekly weather forecast">--</a>
-            </div>
-            <a class="gorge-link" id="gorge-maps" href="https://www.google.com/maps?q=38.089,22.166" target="_blank" rel="noopener noreferrer">Google Maps ↗</a>
+            <a href="#" id="gorge-discover">→ Discover</a>
           </div>
         </div>
       </section>
 
       <section class="panel beaches" aria-label="Beaches section">
         <div class="content">
-          <h2 id="beaches-title">Beaches</h2>
-          <p id="beaches-subtitle">Light, salt, and slow time.</p>
-          <a href="#" id="beaches-discover">→ Discover</a>
-          <div class="beaches-live control-panel" aria-live="polite">
-            <div class="beaches-live-row">
-              <span class="beaches-live-icon" aria-hidden="true">
-                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="3" y="5" width="18" height="16" rx="3" stroke="currentColor" stroke-width="1.7"/>
-                  <path d="M8 3.5V7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                  <path d="M16 3.5V7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                  <path d="M3 10H21" stroke="currentColor" stroke-width="1.7"/>
-                </svg>
-              </span>
-              <strong id="beaches-date">--</strong>
+          <div class="beaches-copy-panel">
+            <h2 id="beaches-title">Beaches</h2>
+            <p id="beaches-subtitle">Light, salt, and slow time.</p>
+          </div>
+          <div class="beaches-side">
+            <div class="beaches-live control-panel" aria-live="polite">
+              <div class="beaches-live-row">
+                <span class="beaches-live-icon" aria-hidden="true">
+                  <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3" y="5" width="18" height="16" rx="3" stroke="currentColor" stroke-width="1.7"/>
+                    <path d="M8 3.5V7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                    <path d="M16 3.5V7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                    <path d="M3 10H21" stroke="currentColor" stroke-width="1.7"/>
+                  </svg>
+                </span>
+                <strong id="beaches-date">--</strong>
+              </div>
+              <div class="beaches-live-row">
+                <span class="beaches-live-icon" aria-hidden="true">
+                  <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 6.2V14.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                    <rect x="9.3" y="3.6" width="5.4" height="12.4" rx="2.7" stroke="currentColor" stroke-width="1.7"/>
+                    <circle cx="12" cy="18" r="3.4" stroke="currentColor" stroke-width="1.7"/>
+                  </svg>
+                </span>
+                <strong id="beaches-temp">--.-°C</strong>
+              </div>
+              <div class="beaches-live-row">
+                <span class="beaches-live-icon metric-weather-icon" id="beaches-weather-symbol" aria-hidden="true"></span>
+                <a class="metric-value metric-link" id="beaches-forecast" href="https://weather.com/weather/tenday/l/38.173,22.160" target="_blank" rel="noopener noreferrer" aria-label="Egkali beach weekly weather forecast">--</a>
+              </div>
+              <div class="beaches-live-row beaches-sea-row">
+                <span class="beaches-live-icon" aria-hidden="true">
+                  <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.5 15.7C4.8 14.4 6.1 14.4 7.4 15.7C8.7 17 10 17 11.3 15.7C12.6 14.4 13.9 14.4 15.2 15.7C16.5 17 17.8 17 19.1 15.7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3.5 11.5C4.8 10.2 6.1 10.2 7.4 11.5C8.7 12.8 10 12.8 11.3 11.5C12.6 10.2 13.9 10.2 15.2 11.5C16.5 12.8 17.8 12.8 19.1 11.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <strong id="beaches-sea-temp">Sea: --.-°C</strong>
+              </div>
+              <div class="beaches-live-row">
+                <span class="beaches-live-icon" aria-hidden="true">
+                  <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/>
+                    <path d="M12 3.5V6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                    <path d="M12 18V20.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                    <path d="M3.5 12H6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                    <path d="M18 12H20.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <strong id="beaches-uv">UV: --</strong>
+              </div>
+              <div class="beaches-live-row">
+                <span class="beaches-live-icon" aria-hidden="true">
+                  <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 4L15.5 10.2H8.5L12 4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                    <path d="M12 20V10.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <strong id="beaches-wind">-- Bft / -- km/h (--)</strong>
+              </div>
+              <a class="beaches-link" id="beaches-maps" href="https://www.google.com/maps?q=38.173,22.160" target="_blank" rel="noopener noreferrer">Google Maps ↗</a>
             </div>
-            <div class="beaches-live-row">
-              <span class="beaches-live-icon" aria-hidden="true">
-                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 6.2V14.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                  <rect x="9.3" y="3.6" width="5.4" height="12.4" rx="2.7" stroke="currentColor" stroke-width="1.7"/>
-                  <circle cx="12" cy="18" r="3.4" stroke="currentColor" stroke-width="1.7"/>
-                </svg>
-              </span>
-              <strong id="beaches-temp">--.-°C</strong>
-            </div>
-            <div class="beaches-live-row">
-              <span class="beaches-live-icon metric-weather-icon" id="beaches-weather-symbol" aria-hidden="true"></span>
-              <a class="metric-value metric-link" id="beaches-forecast" href="https://weather.com/weather/tenday/l/38.173,22.160" target="_blank" rel="noopener noreferrer" aria-label="Egkali beach weekly weather forecast">--</a>
-            </div>
-            <div class="beaches-live-row beaches-sea-row">
-              <span class="beaches-live-icon" aria-hidden="true">
-                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M3.5 15.7C4.8 14.4 6.1 14.4 7.4 15.7C8.7 17 10 17 11.3 15.7C12.6 14.4 13.9 14.4 15.2 15.7C16.5 17 17.8 17 19.1 15.7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M3.5 11.5C4.8 10.2 6.1 10.2 7.4 11.5C8.7 12.8 10 12.8 11.3 11.5C12.6 10.2 13.9 10.2 15.2 11.5C16.5 12.8 17.8 12.8 19.1 11.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-              <strong id="beaches-sea-temp">Sea: --.-°C</strong>
-            </div>
-            <div class="beaches-live-row">
-              <span class="beaches-live-icon" aria-hidden="true">
-                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/>
-                  <path d="M12 3.5V6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                  <path d="M12 18V20.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                  <path d="M3.5 12H6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                  <path d="M18 12H20.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                </svg>
-              </span>
-              <strong id="beaches-uv">UV: --</strong>
-            </div>
-            <div class="beaches-live-row">
-              <span class="beaches-live-icon" aria-hidden="true">
-                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 4L15.5 10.2H8.5L12 4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-                  <path d="M12 20V10.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                </svg>
-              </span>
-              <strong id="beaches-wind">-- Bft / -- km/h (--)</strong>
-            </div>
-            <a class="beaches-link" id="beaches-maps" href="https://www.google.com/maps?q=38.173,22.160" target="_blank" rel="noopener noreferrer">Google Maps ↗</a>
+            <a href="#" id="beaches-discover">→ Discover</a>
           </div>
         </div>
       </section>
@@ -298,8 +313,10 @@
 
       <section class="panel outro" aria-label="Outro section">
         <div class="content">
-          <h2 id="outro-title">Diakopto isn't a place.</h2>
-          <p id="outro-subtitle">It's a pause.</p>
+          <div class="outro-copy-panel">
+            <h2 id="outro-title">Diakopto isn't a place.</h2>
+            <p id="outro-subtitle">It's a pause.</p>
+          </div>
           <div class="outro-live control-panel" aria-live="polite">
             <div class="metric-row">
               <div class="metric-meta">
