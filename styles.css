@@ -522,17 +522,43 @@ q,
 
 .odontotos .content h2,
 .odontotos .content p,
-.odontotos .content > a,
 .gorge .content h2,
 .gorge .content p,
-.gorge .content > a,
 .beaches .content h2,
 .beaches .content p,
-.beaches .content > a,
 .local .content h2,
-.local .content p,
-.local .content > a {
+.local .content p {
   grid-column: 1;
+}
+
+.odontotos .content > a,
+.gorge .content > a,
+.beaches .content > a,
+.local .content > a {
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: end;
+  align-self: start;
+  margin-top: 0.56rem;
+  display: inline-flex;
+  font-size: clamp(1.02rem, 1.55vw, 1.24rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  opacity: 1;
+  border-bottom-width: 2px;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+  animation: discoverPulse 2.6s ease-in-out infinite;
+}
+
+.odontotos .content > a:hover,
+.odontotos .content > a:focus-visible,
+.gorge .content > a:hover,
+.gorge .content > a:focus-visible,
+.beaches .content > a:hover,
+.beaches .content > a:focus-visible,
+.local .content > a:hover,
+.local .content > a:focus-visible {
+  animation-play-state: paused;
 }
 
 .odontotos-live,
@@ -548,7 +574,7 @@ q,
 .beaches-live,
 .local-live {
   grid-column: 2;
-  grid-row: 1 / -1;
+  grid-row: 1;
   justify-self: end;
   align-self: center;
 }
@@ -809,17 +835,65 @@ a {
   100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(255, 255, 255, 0)); }
 }
 
+@keyframes discoverPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  45% {
+    transform: scale(1.045);
+    text-shadow: 0 0 14px rgba(255, 255, 255, 0.4), 0 1px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  70% {
+    transform: scale(1.015);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .metric-icon .icon-svg,
   .metric-weather-icon .icon-svg,
-  .forecast-icon .icon-svg {
+  .forecast-icon .icon-svg,
+  .odontotos .content > a,
+  .gorge .content > a,
+  .beaches .content > a,
+  .local .content > a {
     animation: none;
   }
 }
 
 @media (max-width: 768px) {
+  .hero .content,
+  .panel.hero.active .content {
+    opacity: 1;
+    transition: none;
+  }
+
+  .hero-title span,
+  .panel.hero.active .hero-title span {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+
+  .panel {
+    height: auto;
+    min-height: 100svh;
+    min-height: 100dvh;
+    align-items: flex-start;
+    overflow: hidden;
+    padding: max(14px, env(safe-area-inset-top)) 5vw max(18px, env(safe-area-inset-bottom));
+  }
+
+  html {
+    scroll-snap-type: y proximity;
+  }
+
   .lang-toggle {
-    top: 10px;
+    top: max(10px, env(safe-area-inset-top));
     right: 10px;
   }
 
@@ -827,10 +901,14 @@ a {
     display: block;
     width: auto;
     max-width: min(94vw, 980px);
+    padding-top: 44px;
   }
 
   .hero-title {
-    font-size: clamp(2rem, 11.5vw, 4.6rem);
+    font-size: clamp(1.32rem, 7.4vw, 2.2rem);
+    line-height: 0.88;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
   }
 
   .hero-live,
@@ -839,23 +917,82 @@ a {
   .beaches-live,
   .local-live,
   .outro-live {
-    margin-top: 1rem;
+    margin-top: 0.72rem;
     gap: 0.42rem;
-    padding: 0.82rem 0.8rem;
+    padding: 0.76rem 0.74rem;
     min-width: 0;
-    width: min(100%, 390px);
-    max-width: min(100%, 390px);
+    width: min(100%, 332px);
+    max-width: min(100%, 332px);
     border-radius: 16px;
+  }
+
+  .hero-live {
+    max-height: calc(100dvh - 158px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .hero-live .metric-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.28rem 0.06rem;
+  }
+
+  .hero-live .metric-value {
+    font-size: clamp(0.88rem, 3.5vw, 1rem);
+    text-align: center;
+  }
+
+  #diakopto-time.metric-value {
+    letter-spacing: 0.08em;
+  }
+
+  .hero-actions {
+    gap: 0.34rem;
+  }
+
+  .hero-actions .metric-link {
+    min-height: 2.05rem;
+    font-size: 0.9rem;
+    padding: 0.32rem 0.5rem;
   }
 
   .odontotos .content,
   .gorge .content,
   .beaches .content,
   .local .content {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     width: auto;
     max-width: 600px;
     min-height: 0;
+  }
+
+  .odontotos .content h2,
+  .gorge .content h2,
+  .beaches .content h2,
+  .local .content h2 {
+    order: 1;
+  }
+
+  .odontotos .content p,
+  .gorge .content p,
+  .beaches .content p,
+  .local .content p {
+    order: 2;
+  }
+
+  .odontotos .content > a,
+  .gorge .content > a,
+  .beaches .content > a,
+  .local .content > a {
+    order: 4;
+    margin-top: 0.32rem;
+    width: min(100%, 332px);
+    display: inline-flex;
+    justify-content: flex-end;
   }
 
   .odontotos-live,
@@ -863,6 +1000,7 @@ a {
   .beaches-live,
   .local-live,
   .outro-live {
+    order: 3;
     margin-top: 0.9rem;
     grid-column: auto;
     grid-row: auto;
@@ -876,14 +1014,16 @@ a {
     min-height: 0;
   }
 
-  .metric-row {
+  .local .metric-row,
+  .outro .metric-row {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.28rem;
     padding: 0.45rem 0;
   }
 
-  .metric-value {
+  .local .metric-value,
+  .outro .metric-value {
     text-align: left;
   }
 
@@ -902,5 +1042,33 @@ a {
     padding: 0.46rem 5vw;
     font-size: 0.72rem;
     line-height: 1.35;
+  }
+}
+
+@media (max-width: 430px) {
+  .hero-title {
+    font-size: clamp(1.2rem, 7vw, 1.9rem);
+    letter-spacing: 0.01em;
+  }
+
+  .hero-live,
+  .odontotos-live,
+  .gorge-live,
+  .beaches-live,
+  .local-live,
+  .outro-live {
+    width: min(100%, 316px);
+    max-width: min(100%, 316px);
+  }
+
+  .odontotos .content > a,
+  .gorge .content > a,
+  .beaches .content > a,
+  .local .content > a {
+    width: min(100%, 316px);
+  }
+
+  .hero-live {
+    max-height: calc(100dvh - 142px);
   }
 }

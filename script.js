@@ -163,21 +163,21 @@ const I18N = {
       'hero-plan': 'ΠΛΑΝΟ',
       'odontotos-title': 'Οδοντωτός Σιδηρόδρομος',
       'odontotos-subtitle': 'Μια διαδρομή χαραγμένη στο βουνό.',
-      'odontotos-discover': '→ Ανακάλυψε',
+      'odontotos-discover': '→ Discover',
       'odontotos-maps': 'GOOGLE MAPS',
       'odontotos-tickets': 'ΕΙΣΙΤΗΡΙΑ',
       'odontotos-station': 'Σταθμός Διακοπτού',
       'gorge-title': 'Φαράγγι Βουραϊκού',
       'gorge-subtitle': 'Εκεί όπου η σιωπή γίνεται τοπίο.',
-      'gorge-discover': '→ Ανακάλυψε',
+      'gorge-discover': '→ Discover',
       'gorge-maps': 'Google Maps ↗',
       'beaches-title': 'Παραλίες',
       'beaches-subtitle': 'Φως, αλάτι και αργός χρόνος.',
-      'beaches-discover': '→ Ανακάλυψε',
+      'beaches-discover': '→ Discover',
       'beaches-maps': 'Google Maps ↗',
       'local-title': 'Τοπική Ζωή',
       'local-subtitle': 'Στιγμές χωρίς προσπάθεια.',
-      'local-discover': '→ Ανακάλυψε',
+      'local-discover': '→ Discover',
       'local-breakfast': 'Πρωινό',
       'local-eat': 'Φαγητό σαν ντόπιος',
       'local-activities': 'Δραστηριότητες',
@@ -286,6 +286,8 @@ function activateHeroWhenBackgroundReady() {
     return;
   }
 
+  const isMobileViewport = window.matchMedia('(max-width: 768px)').matches;
+
   let didActivate = false;
   const activateHero = () => {
     if (didActivate) {
@@ -301,8 +303,13 @@ function activateHeroWhenBackgroundReady() {
   heroImage.onerror = activateHero;
   heroImage.src = HERO_BACKGROUND_SRC;
 
-  // Fallback for very slow networks so hero content is never blocked.
-  setTimeout(activateHero, 1400);
+  // Mobile should reveal hero quickly so title and controls are not delayed.
+  if (isMobileViewport) {
+    setTimeout(activateHero, 180);
+  } else {
+    // Fallback for very slow networks so hero content is never blocked.
+    setTimeout(activateHero, 1400);
+  }
 }
 
 function removeAccentsFromGreekCapitals(text) {
