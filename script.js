@@ -1,4 +1,5 @@
 const panels = document.querySelectorAll('.panel');
+const controlPanels = document.querySelectorAll('.control-panel');
 const diakoptoDateEl = document.getElementById('diakopto-date');
 const diakoptoTimeEl = document.getElementById('diakopto-time');
 const diakoptoTempEl = document.getElementById('diakopto-temp');
@@ -6,12 +7,22 @@ const diakoptoForecastEl = document.getElementById('diakopto-forecast');
 const diakoptoSunEl = document.getElementById('diakopto-sun');
 const diakoptoWeatherSymbolEl = document.getElementById('diakopto-weather-symbol');
 const diakoptoForecast3El = document.getElementById('diakopto-forecast3');
+const outroDateEl = document.getElementById('outro-date');
+const outroForecast2El = document.getElementById('outro-forecast2');
+const odontotosDateEl = document.getElementById('odontotos-date');
+const odontotosTempEl = document.getElementById('odontotos-temp');
+const odontotosForecastEl = document.getElementById('odontotos-forecast');
+const odontotosWeatherSymbolEl = document.getElementById('odontotos-weather-symbol');
+const gorgeDateEl = document.getElementById('gorge-date');
 const gorgeTempEl = document.getElementById('gorge-temp');
 const gorgeForecastEl = document.getElementById('gorge-forecast');
 const gorgeWeatherSymbolEl = document.getElementById('gorge-weather-symbol');
+const beachesDateEl = document.getElementById('beaches-date');
 const beachesTempEl = document.getElementById('beaches-temp');
 const beachesForecastEl = document.getElementById('beaches-forecast');
 const beachesWeatherSymbolEl = document.getElementById('beaches-weather-symbol');
+const localDateEl = document.getElementById('local-date');
+const localTimeEl = document.getElementById('local-time');
 
 const DIAKOPTO_COORDS = {
   lat: 38.191,
@@ -21,6 +32,11 @@ const DIAKOPTO_COORDS = {
 const VOURAIKOS_GORGE_COORDS = {
   lat: 38.089,
   lon: 22.166,
+};
+
+const ODONTOTOS_COORDS = {
+  lat: 38.035,
+  lon: 22.110,
 };
 
 const EGKALI_BEACH_COORDS = {
@@ -72,25 +88,49 @@ function removeAccentsFromGreekCapitals(text) {
 }
 
 function updateDiakoptoClock() {
-  if (!diakoptoDateEl && !diakoptoTimeEl) {
+  if (!diakoptoDateEl && !diakoptoTimeEl && !outroDateEl && !odontotosDateEl && !gorgeDateEl && !beachesDateEl && !localDateEl && !localTimeEl) {
     return;
   }
 
   const now = new Date();
 
-  if (diakoptoDateEl) {
-    const dateFormatter = new Intl.DateTimeFormat('el-GR', {
-      timeZone: 'Europe/Athens',
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-    });
+  const fullDateFormatter = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/Athens',
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
 
-    diakoptoDateEl.textContent = removeAccentsFromGreekCapitals(dateFormatter.format(now));
+  const fullDateTextRaw = fullDateFormatter.format(now).replace(',', '');
+  const fullDateText = fullDateTextRaw.charAt(0).toUpperCase() + fullDateTextRaw.slice(1);
+
+  if (diakoptoDateEl) {
+    diakoptoDateEl.textContent = fullDateText;
+  }
+
+  if (outroDateEl) {
+    outroDateEl.textContent = fullDateText;
+  }
+
+  if (odontotosDateEl) {
+    odontotosDateEl.textContent = fullDateText;
+  }
+
+  if (gorgeDateEl) {
+    gorgeDateEl.textContent = fullDateText;
+  }
+
+  if (beachesDateEl) {
+    beachesDateEl.textContent = fullDateText;
+  }
+
+  if (localDateEl) {
+    localDateEl.textContent = fullDateText;
   }
 
   if (diakoptoTimeEl) {
-    const timeFormatter = new Intl.DateTimeFormat('el-GR', {
+    const timeFormatter = new Intl.DateTimeFormat('en-GB', {
       timeZone: 'Europe/Athens',
       hour: '2-digit',
       minute: '2-digit',
@@ -99,35 +139,49 @@ function updateDiakoptoClock() {
     });
 
     diakoptoTimeEl.textContent = removeAccentsFromGreekCapitals(timeFormatter.format(now));
+
+    if (localTimeEl) {
+      localTimeEl.textContent = removeAccentsFromGreekCapitals(timeFormatter.format(now));
+    }
+  } else if (localTimeEl) {
+    const localTimeFormatter = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Europe/Athens',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+    });
+
+    localTimeEl.textContent = removeAccentsFromGreekCapitals(localTimeFormatter.format(now));
   }
 }
 
 function getWeatherLabel(weatherCode) {
   const weatherMap = {
-    0: 'Καθαρός',
-    1: 'Κυρίως αίθριος',
-    2: 'Λίγες νεφώσεις',
-    3: 'Συννεφιά',
-    45: 'Ομίχλη',
-    48: 'Παγωμένη ομίχλη',
-    51: 'Ασθενές ψιλόβροχο',
-    53: 'Ψιλόβροχο',
-    55: 'Έντονο ψιλόβροχο',
-    61: 'Ασθενής βροχή',
-    63: 'Βροχή',
-    65: 'Έντονη βροχή',
-    71: 'Ασθενής χιονόπτωση',
-    73: 'Χιονόπτωση',
-    75: 'Έντονη χιονόπτωση',
-    80: 'Τοπικές μπόρες',
-    81: 'Μπόρες',
-    82: 'Ισχυρές μπόρες',
-    95: 'Καταιγίδα',
-    96: 'Καταιγίδα με χαλάζι',
-    99: 'Ισχυρή καταιγίδα με χαλάζι',
+    0: 'Clear sky',
+    1: 'Mostly clear',
+    2: 'Partly cloudy',
+    3: 'Overcast',
+    45: 'Fog',
+    48: 'Rime fog',
+    51: 'Light drizzle',
+    53: 'Drizzle',
+    55: 'Heavy drizzle',
+    61: 'Light rain',
+    63: 'Rain',
+    65: 'Heavy rain',
+    71: 'Light snow',
+    73: 'Snow',
+    75: 'Heavy snow',
+    80: 'Light showers',
+    81: 'Showers',
+    82: 'Heavy showers',
+    95: 'Thunderstorm',
+    96: 'Thunderstorm with hail',
+    99: 'Severe thunderstorm with hail',
   };
 
-  return weatherMap[weatherCode] || 'Μεταβλητός καιρός';
+  return weatherMap[weatherCode] || 'Variable weather';
 }
 
 function getWeatherSymbol(weatherCode) {
@@ -186,7 +240,7 @@ function formatForecastDay(dateString, weatherCode, minTemp, maxTemp) {
   }
 
   const date = new Date(`${dateString}T00:00:00`);
-  const dayLabel = new Intl.DateTimeFormat('el-GR', {
+  const dayLabel = new Intl.DateTimeFormat('en-GB', {
     weekday: 'short',
     timeZone: 'Europe/Athens',
   }).format(date);
@@ -197,7 +251,7 @@ function formatForecastDay(dateString, weatherCode, minTemp, maxTemp) {
 
   return {
     day: removeAccentsFromGreekCapitals(dayLabel),
-    temp: `${minValue}/${maxValue}`,
+    temp: `${minValue} / ${maxValue}`,
     desc: removeAccentsFromGreekCapitals(weatherLabel),
     symbol: getWeatherSymbol(weatherCode),
   };
@@ -218,6 +272,31 @@ function renderThreeDayForecast(dailyData) {
   ));
 
   diakoptoForecast3El.innerHTML = items
+    .map((item) => `
+      <li>
+        <span class="forecast-day">${item.day}</span>
+        <span class="forecast-temp"><span class="forecast-icon">${getWeatherIconSvg(item.symbol)}</span>${item.temp}</span>
+        <span class="forecast-desc">${item.desc}</span>
+      </li>
+    `)
+    .join('');
+}
+
+function renderOutroTwoDayForecast(dailyData) {
+  if (!outroForecast2El) {
+    return;
+  }
+
+  const dates = dailyData?.time || [];
+  const weatherCodes = dailyData?.weather_code || [];
+  const mins = dailyData?.temperature_2m_min || [];
+  const maxs = dailyData?.temperature_2m_max || [];
+
+  const items = Array.from({ length: 2 }, (_, index) => (
+    formatForecastDay(dates[index], weatherCodes[index], mins[index], maxs[index])
+  ));
+
+  outroForecast2El.innerHTML = items
     .map((item) => `
       <li>
         <span class="forecast-day">${item.day}</span>
@@ -269,6 +348,7 @@ async function updateDiakoptoWeatherData() {
 
     diakoptoSunEl.textContent = `${formatIsoTime(sunrise)} / ${formatIsoTime(sunset)}`;
     renderThreeDayForecast(daily);
+    renderOutroTwoDayForecast(daily);
   } catch (error) {
     diakoptoTempEl.textContent = 'N/A';
     diakoptoForecastEl.textContent = 'N/A';
@@ -277,6 +357,9 @@ async function updateDiakoptoWeatherData() {
       diakoptoWeatherSymbolEl.innerHTML = getWeatherIconSvg('partly');
     }
     diakoptoForecast3El.innerHTML = '<li><span class="forecast-day">N/A</span><span class="forecast-temp">--/--</span><span class="forecast-desc">No data</span></li><li><span class="forecast-day">N/A</span><span class="forecast-temp">--/--</span><span class="forecast-desc">No data</span></li>';
+    if (outroForecast2El) {
+      outroForecast2El.innerHTML = '<li><span class="forecast-day">N/A</span><span class="forecast-temp">--/--</span><span class="forecast-desc">No data</span></li><li><span class="forecast-day">N/A</span><span class="forecast-temp">--/--</span><span class="forecast-desc">No data</span></li>';
+    }
   }
 }
 
@@ -309,7 +392,7 @@ async function updateGorgeWeatherData() {
 
     if (typeof maxTemp === 'number' && typeof minTemp === 'number') {
       const forecastLabel = removeAccentsFromGreekCapitals(getWeatherLabel(weatherCode));
-      gorgeForecastEl.textContent = `${forecastLabel} (${minTemp.toFixed(0)}°/${maxTemp.toFixed(0)}°)`;
+      gorgeForecastEl.textContent = `${forecastLabel} (${minTemp.toFixed(0)}° / ${maxTemp.toFixed(0)}°)`;
     } else {
       gorgeForecastEl.textContent = 'N/A';
     }
@@ -317,6 +400,46 @@ async function updateGorgeWeatherData() {
     gorgeTempEl.textContent = 'N/A';
     gorgeForecastEl.textContent = 'N/A';
     gorgeWeatherSymbolEl.innerHTML = getWeatherIconSvg('partly');
+  }
+}
+
+async function updateOdontotosWeatherData() {
+  if (!odontotosTempEl || !odontotosForecastEl || !odontotosWeatherSymbolEl) {
+    return;
+  }
+
+  try {
+    const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${ODONTOTOS_COORDS.lat}&longitude=${ODONTOTOS_COORDS.lon}&current=temperature_2m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Europe%2FAthens`;
+    const response = await fetch(apiUrl, { cache: 'no-store' });
+
+    if (!response.ok) {
+      throw new Error(`Weather API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    const temperature = data?.current?.temperature_2m;
+    const weatherCode = data?.daily?.weather_code?.[0];
+    const maxTemp = data?.daily?.temperature_2m_max?.[0];
+    const minTemp = data?.daily?.temperature_2m_min?.[0];
+    const weatherSymbolKey = getWeatherSymbol(weatherCode);
+
+    if (typeof temperature !== 'number') {
+      throw new Error('Temperature is missing from API response');
+    }
+
+    odontotosTempEl.textContent = `${temperature.toFixed(1)}°C`;
+    odontotosWeatherSymbolEl.innerHTML = getWeatherIconSvg(weatherSymbolKey);
+
+    if (typeof maxTemp === 'number' && typeof minTemp === 'number') {
+      const forecastLabel = removeAccentsFromGreekCapitals(getWeatherLabel(weatherCode));
+      odontotosForecastEl.textContent = `${forecastLabel} (${minTemp.toFixed(0)}° / ${maxTemp.toFixed(0)}°)`;
+    } else {
+      odontotosForecastEl.textContent = 'N/A';
+    }
+  } catch (error) {
+    odontotosTempEl.textContent = 'N/A';
+    odontotosForecastEl.textContent = 'N/A';
+    odontotosWeatherSymbolEl.innerHTML = getWeatherIconSvg('partly');
   }
 }
 
@@ -349,7 +472,7 @@ async function updateBeachesWeatherData() {
 
     if (typeof maxTemp === 'number' && typeof minTemp === 'number') {
       const forecastLabel = removeAccentsFromGreekCapitals(getWeatherLabel(weatherCode));
-      beachesForecastEl.textContent = `${forecastLabel} (${minTemp.toFixed(0)}°/${maxTemp.toFixed(0)}°)`;
+      beachesForecastEl.textContent = `${forecastLabel} (${minTemp.toFixed(0)}° / ${maxTemp.toFixed(0)}°)`;
     } else {
       beachesForecastEl.textContent = 'N/A';
     }
@@ -371,17 +494,23 @@ window.addEventListener('load', () => {
     gorgeWeatherSymbolEl.innerHTML = getWeatherIconSvg('partly');
   }
 
+  if (odontotosWeatherSymbolEl) {
+    odontotosWeatherSymbolEl.innerHTML = getWeatherIconSvg('partly');
+  }
+
   if (beachesWeatherSymbolEl) {
     beachesWeatherSymbolEl.innerHTML = getWeatherIconSvg('partly');
   }
 
   updateDiakoptoClock();
   updateDiakoptoWeatherData();
+  updateOdontotosWeatherData();
   updateGorgeWeatherData();
   updateBeachesWeatherData();
 
   setInterval(updateDiakoptoClock, 1000);
   setInterval(updateDiakoptoWeatherData, 30 * 60 * 1000);
+  setInterval(updateOdontotosWeatherData, 30 * 60 * 1000);
   setInterval(updateGorgeWeatherData, 30 * 60 * 1000);
   setInterval(updateBeachesWeatherData, 30 * 60 * 1000);
 });
@@ -401,3 +530,19 @@ const observer = new IntersectionObserver((entries) => {
 panels.forEach((panel) => {
   observer.observe(panel);
 });
+
+if (controlPanels.length > 0) {
+  const panelObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+
+        panelObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  controlPanels.forEach((controlPanel) => {
+    panelObserver.observe(controlPanel);
+  });
+}
