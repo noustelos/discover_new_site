@@ -74,29 +74,29 @@ const I18N = {
       'hero-train': 'TRAIN',
       'hero-tickets': 'TICKETS',
       'hero-plan': 'PLAN',
-      'odontotos-title': 'Odontotos Railway',
-      'odontotos-subtitle': 'A journey carved into the mountain.',
+      'odontotos-title': 'Odontotos Railway: An Engineering Feat',
+      'odontotos-subtitle': 'The historic Odontotos railway, inaugurated in 1896, crosses the 22-kilometer Vouraikos gorge by activating its special rack-and-pinion system to climb steep mountain gradients that reach 17.5%. On the ascent toward Kalavryta, its agile carriages pass over 49 bridges and cut through solid rock via dark tunnels with natural stalactites, especially along the segment between the Niamata and Triklia stations.',
       'odontotos-discover': '→ Discover',
       'odontotos-maps': 'GOOGLE MAPS',
       'odontotos-tickets': 'TICKETS',
       'odontotos-station': 'Diakopto Station',
       'gorge-title': 'Vouraikos Gorge',
-      'gorge-subtitle': 'Where silence becomes landscape.',
+      'gorge-subtitle': 'This impressive 20-kilometer rift forms a rare geological landscape, where the historic Odontotos railway of 1896 climbs across 49 bridges and through dark tunnels with natural stalactites between the Niamata and Triklia stations. For the ultimate mountain escape, board the train to witness ascents reaching 17.5%, or hike the European E4 trail that runs parallel to the rails along the rushing river.',
       'gorge-discover': '→ Discover',
       'gorge-maps': 'Google Maps ↗',
       'beaches-title': 'Beaches',
-      'beaches-subtitle': 'Light, salt, and slow time.',
+      'beaches-subtitle': 'Discover the area\'s coastal richness by diving into the deep waters of Punta\'s white pebble beach and unwinding on the sandy, organized shore of Elaionas. Alternatively, visit cosmopolitan Egkali beach, where fine pebbles and wind-sheltered waters create the ideal setting for sea sports.',
       'beaches-discover': '→ Discover',
       'beaches-maps': 'Google Maps ↗',
       'local-title': 'Local Life',
-      'local-subtitle': 'Moments that don\'t try too hard.',
+      'local-subtitle': 'Local life in Diakopto unfolds around its picturesque little harbor, where residents enjoy fresh fish with views of the Corinthian Gulf. Authentic gastronomy is the true meeting point, with traditional spots such as the "O Gourlis" cafe in nearby Zachloritika gathering people for homemade burgers and handcrafted cheese pies.',
       'local-discover': '→ Discover',
       'local-breakfast': 'Breakfast',
       'local-eat': 'Eat & Drink',
       'local-activities': 'Activities',
       'local-useful': 'Useful Info',
-      'outro-title': 'Diakopto isn\'t a place.',
-      'outro-subtitle': 'It\'s a pause.',
+      'outro-title': 'We are waiting for you!',
+      'outro-subtitle': 'Diakopto harmoniously connects the Corinthian Gulf with the mountainous massif of Helmos, offering travelers the rare chance to board the historic Odontotos railway of 1896 and cross the geological rift of Vouraikos. Alongside mountain exploration on the European E4 trail, visitors enjoy diving in the deep waters of Punta\'s white beach and tasting fresh fish at the picturesque harbor of this seaside settlement.',
       'outro-stay': 'STAY',
       'outro-train': 'TRAIN',
       'outro-map': 'MAP',
@@ -174,7 +174,7 @@ const I18N = {
       'gorge-discover': '→ Discover',
       'gorge-maps': 'Google Maps ↗',
       'beaches-title': 'Παραλίες',
-      'beaches-subtitle': 'Παραλίες: Ανακαλύψτε τον παραθαλάσσιο πλούτο της περιοχής κάνοντας βουτιές στα βαθιά νερά της λευκής, βοτσαλωτής παραλίας της Πούντας και χαλαρώνοντας στην αμμουδερή, οργανωμένη ακτή του Ελαιώνα. Εναλλακτικά, επισκεφθείτε την κοσμοπολίτικη παραλία Εγκάλη, όπου το ψιλό βότσαλο και τα προστατευμένα από τους ανέμους νερά συνθέτουν το απόλυτο σκηνικό για θαλάσσια σπορ.',
+      'beaches-subtitle': 'Ανακαλύψτε τον παραθαλάσσιο πλούτο της περιοχής κάνοντας βουτιές στα βαθιά νερά της λευκής, βοτσαλωτής παραλίας της Πούντας και χαλαρώνοντας στην αμμουδερή, οργανωμένη ακτή του Ελαιώνα. Εναλλακτικά, επισκεφθείτε την κοσμοπολίτικη παραλία Εγκάλη, όπου το ψιλό βότσαλο και τα προστατευμένα από τους ανέμους νερά συνθέτουν το απόλυτο σκηνικό για θαλάσσια σπορ.',
       'beaches-discover': '→ Discover',
       'beaches-maps': 'Google Maps ↗',
       'local-title': 'Τοπική Ζωή',
@@ -804,6 +804,9 @@ langToggleButtons.forEach((button) => {
 
 window.addEventListener('load', () => {
   activateHeroWhenBackgroundReady();
+});
+
+window.addEventListener('DOMContentLoaded', () => {
   applyLanguage(currentLanguage);
 
   if (diakoptoWeatherSymbolEl) {

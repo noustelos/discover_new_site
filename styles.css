@@ -167,6 +167,16 @@ q,
   flex-direction: column;
   gap: 0.74rem;
   max-width: min(64vw, 820px);
+  padding: 0.92rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 18px;
+  background:
+    radial-gradient(120% 120% at 8% 0%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.06) 38%, rgba(18, 28, 42, 0.34) 100%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  background-color: rgba(20, 28, 40, 0.24);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  backdrop-filter: blur(12px) saturate(1.2);
+  box-shadow: 0 14px 30px rgba(2, 8, 20, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.24);
 }
 
 .hero-subtitle {
@@ -1017,6 +1027,11 @@ a {
 }
 
 @media (max-width: 768px) {
+  .outro {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .hero .content,
   .panel.hero.active .content {
     opacity: 1;
@@ -1041,7 +1056,11 @@ a {
   }
 
   html {
-    scroll-snap-type: y proximity;
+    scroll-snap-type: none;
+  }
+
+  .panel {
+    scroll-snap-align: none;
   }
 
   .lang-toggle {
@@ -1066,6 +1085,8 @@ a {
   .hero-copy {
     max-width: min(100%, 332px);
     gap: 0.56rem;
+    padding: 0.74rem 0.72rem;
+    border-radius: 16px;
   }
 
   .hero-subtitle {
@@ -1265,9 +1286,11 @@ a {
   }
 
   .outro-footer {
-    bottom: 18px;
-    width: 100%;
-    padding: 0.46rem 5vw;
+    position: static;
+    bottom: auto;
+    width: min(100%, 332px);
+    margin: 0.8rem 0 0;
+    padding: 0.46rem 0.74rem;
     font-size: 0.72rem;
     line-height: 1.35;
   }
@@ -1340,6 +1363,10 @@ a {
   }
 
   .beaches .content .beaches-copy-panel {
+    width: min(100%, 316px);
+  }
+
+  .outro-footer {
     width: min(100%, 316px);
   }
 
