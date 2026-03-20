@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Sora:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Sora:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -61,7 +61,7 @@
               <div class="metric-meta">
                 <span class="metric-icon metric-weather-icon" id="diakopto-weather-symbol" data-weather-icon="sun" aria-hidden="true"></span>
               </div>
-              <strong class="metric-value" id="diakopto-forecast">--</strong>
+              <a class="metric-value metric-link" id="diakopto-forecast" href="https://weather.com/weather/tenday/l/38.191,22.201" target="_blank" rel="noopener noreferrer" aria-label="Diakopto weekly weather forecast">--</a>
             </div>
             <div class="metric-row">
               <div class="metric-meta">
@@ -94,10 +94,10 @@
                 <li>--</li>
               </ul>
               <div class="hero-actions">
-                <a class="metric-value metric-link" href="#" aria-label="Stay options">STAY</a>
-                <a class="metric-value metric-link" href="#" aria-label="Train options">TRAIN</a>
-                <a class="metric-value metric-link" href="#" aria-label="Visit options">VISIT</a>
-                <a class="metric-value metric-link" href="#" aria-label="Plan your visit">PLAN</a>
+                <a class="metric-value metric-link" href="https://www.tripadvisor.com.gr/Hotels-g5496177-Diakopto_Achaea_Region_West_Greece-Hotels.html" target="_blank" rel="noopener noreferrer" aria-label="Stay options">STAY</a>
+                <a class="metric-value metric-link" href="https://noustelos.github.io/odontotos/" target="_blank" rel="noopener noreferrer" aria-label="Train options">TRAIN</a>
+                <a class="metric-value metric-link" href="https://newtickets.hellenictrain.gr/Channels.HellenicTrainWeb/" target="_blank" rel="noopener noreferrer" aria-label="Tickets options">TICKETS</a>
+                <a class="metric-value metric-link" href="https://noustelos.github.io/odontotos/#visitor-section" target="_blank" rel="noopener noreferrer" aria-label="Plan your visit">PLAN</a>
               </div>
             </div>
           </div>
@@ -133,7 +133,7 @@
             </div>
             <div class="odontotos-live-row">
               <span class="odontotos-live-icon metric-weather-icon" id="odontotos-weather-symbol" aria-hidden="true"></span>
-              <strong id="odontotos-forecast">--</strong>
+              <a class="metric-value metric-link" id="odontotos-forecast" href="https://weather.com/weather/tenday/l/38.035,22.110" target="_blank" rel="noopener noreferrer" aria-label="Odontotos weekly weather forecast">--</a>
             </div>
             <div class="odontotos-actions">
               <a class="metric-value metric-link maps-action" href="https://www.google.com/maps/search/?api=1&query=Odontotos+Railway+Vouraikos+Gorge" target="_blank" rel="noopener noreferrer" aria-label="Google Maps route">GOOGLE MAPS</a>
@@ -173,7 +173,7 @@
             </div>
             <div class="gorge-live-row">
               <span class="gorge-live-icon metric-weather-icon" id="gorge-weather-symbol" aria-hidden="true"></span>
-              <strong id="gorge-forecast">--</strong>
+              <a class="metric-value metric-link" id="gorge-forecast" href="https://weather.com/weather/tenday/l/38.089,22.166" target="_blank" rel="noopener noreferrer" aria-label="Vouraikos Gorge weekly weather forecast">--</a>
             </div>
             <a class="gorge-link" href="https://www.google.com/maps?q=38.089,22.166" target="_blank" rel="noopener noreferrer">Google Maps ↗</a>
           </div>
@@ -209,7 +209,37 @@
             </div>
             <div class="beaches-live-row">
               <span class="beaches-live-icon metric-weather-icon" id="beaches-weather-symbol" aria-hidden="true"></span>
-              <strong id="beaches-forecast">--</strong>
+              <a class="metric-value metric-link" id="beaches-forecast" href="https://weather.com/weather/tenday/l/38.173,22.160" target="_blank" rel="noopener noreferrer" aria-label="Egkali beach weekly weather forecast">--</a>
+            </div>
+            <div class="beaches-live-row">
+              <span class="beaches-live-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.5 15.7C4.8 14.4 6.1 14.4 7.4 15.7C8.7 17 10 17 11.3 15.7C12.6 14.4 13.9 14.4 15.2 15.7C16.5 17 17.8 17 19.1 15.7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M3.5 11.5C4.8 10.2 6.1 10.2 7.4 11.5C8.7 12.8 10 12.8 11.3 11.5C12.6 10.2 13.9 10.2 15.2 11.5C16.5 12.8 17.8 12.8 19.1 11.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <strong id="beaches-sea-temp">Sea: --.-°C</strong>
+            </div>
+            <div class="beaches-live-row">
+              <span class="beaches-live-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="M12 3.5V6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path d="M12 18V20.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path d="M3.5 12H6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path d="M18 12H20.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <strong id="beaches-uv">UV: --</strong>
+            </div>
+            <div class="beaches-live-row">
+              <span class="beaches-live-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 4L15.5 10.2H8.5L12 4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M12 20V10.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <strong id="beaches-wind">-- Bft / -- km/h (--)</strong>
             </div>
             <a class="beaches-link" href="https://www.google.com/maps?q=38.173,22.160" target="_blank" rel="noopener noreferrer">Google Maps ↗</a>
           </div>
@@ -288,7 +318,7 @@
             </div>
           </div>
         </div>
-        <p class="outro-footer">Designed by NOUSTELOS_STUDIO /> official partner of WEB HOST PRO Αιγιαλεια | 2026 © all rights reserved.</p>
+        <p class="outro-footer">Designed by <span class="outro-studio">NOUSTELOS_STUDIO /></span> official partner of <span class="outro-host">WEB HOST PRO</span> Αιγιαλεια | 2026 © all rights reserved.</p>
       </section>
     </main>
 

@@ -21,6 +21,9 @@ const beachesDateEl = document.getElementById('beaches-date');
 const beachesTempEl = document.getElementById('beaches-temp');
 const beachesForecastEl = document.getElementById('beaches-forecast');
 const beachesWeatherSymbolEl = document.getElementById('beaches-weather-symbol');
+const beachesSeaTempEl = document.getElementById('beaches-sea-temp');
+const beachesUvEl = document.getElementById('beaches-uv');
+const beachesWindEl = document.getElementById('beaches-wind');
 const localDateEl = document.getElementById('local-date');
 const localTimeEl = document.getElementById('local-time');
 
@@ -43,6 +46,7 @@ const EGKALI_BEACH_COORDS = {
   lat: 38.173,
   lon: 22.160,
 };
+const DIAKOPTO_TENDAY_WEATHER_URL = 'https://weather.com/weather/tenday/l/38.191,22.201';
 const HERO_BACKGROUND_SRC = 'assets/photos/section_1/sea-big.webp';
 
 function activateHeroWhenBackgroundReady() {
@@ -221,6 +225,38 @@ function getWeatherIconSvg(iconName) {
   return icons[iconName] || icons.partly;
 }
 
+function toBeaufortScale(speedKmh) {
+  if (typeof speedKmh !== 'number' || speedKmh < 0) {
+    return null;
+  }
+
+  if (speedKmh < 1) return 0;
+  if (speedKmh <= 5.9) return 1;
+  if (speedKmh <= 11.9) return 2;
+  if (speedKmh <= 19.9) return 3;
+  if (speedKmh <= 28.9) return 4;
+  if (speedKmh <= 38.9) return 5;
+  if (speedKmh <= 49.9) return 6;
+  if (speedKmh <= 61.9) return 7;
+  if (speedKmh <= 74.9) return 8;
+  if (speedKmh <= 88.9) return 9;
+  if (speedKmh <= 102.9) return 10;
+  if (speedKmh <= 117.9) return 11;
+  return 12;
+}
+
+function degreesToCompass(degrees) {
+  if (typeof degrees !== 'number') {
+    return '--';
+  }
+
+  const normalized = ((degrees % 360) + 360) % 360;
+  const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+  const index = Math.round(normalized / 45) % 8;
+
+  return directions[index];
+}
+
 function formatIsoTime(isoString) {
   if (typeof isoString !== 'string' || !isoString.includes('T')) {
     return '--:--';
@@ -274,9 +310,11 @@ function renderThreeDayForecast(dailyData) {
   diakoptoForecast3El.innerHTML = items
     .map((item) => `
       <li>
-        <span class="forecast-day">${item.day}</span>
-        <span class="forecast-temp"><span class="forecast-icon">${getWeatherIconSvg(item.symbol)}</span>${item.temp}</span>
-        <span class="forecast-desc">${item.desc}</span>
+        <a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="Diakopto 10 day weather forecast">
+          <span class="forecast-day">${item.day}</span>
+          <span class="forecast-temp"><span class="forecast-icon">${getWeatherIconSvg(item.symbol)}</span>${item.temp}</span>
+          <span class="forecast-desc">${item.desc}</span>
+        </a>
       </li>
     `)
     .join('');
@@ -299,9 +337,11 @@ function renderOutroTwoDayForecast(dailyData) {
   outroForecast2El.innerHTML = items
     .map((item) => `
       <li>
-        <span class="forecast-day">${item.day}</span>
-        <span class="forecast-temp"><span class="forecast-icon">${getWeatherIconSvg(item.symbol)}</span>${item.temp}</span>
-        <span class="forecast-desc">${item.desc}</span>
+        <a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="Diakopto 10 day weather forecast">
+          <span class="forecast-day">${item.day}</span>
+          <span class="forecast-temp"><span class="forecast-icon">${getWeatherIconSvg(item.symbol)}</span>${item.temp}</span>
+          <span class="forecast-desc">${item.desc}</span>
+        </a>
       </li>
     `)
     .join('');
@@ -356,9 +396,9 @@ async function updateDiakoptoWeatherData() {
     if (diakoptoWeatherSymbolEl) {
       diakoptoWeatherSymbolEl.innerHTML = getWeatherIconSvg('partly');
     }
-    diakoptoForecast3El.innerHTML = '<li><span class="forecast-day">N/A</span><span class="forecast-temp">--/--</span><span class="forecast-desc">No data</span></li><li><span class="forecast-day">N/A</span><span class="forecast-temp">--/--</span><span class="forecast-desc">No data</span></li>';
+    diakoptoForecast3El.innerHTML = `<li><a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="Diakopto 10 day weather forecast"><span class="forecast-day">N/A</span><span class="forecast-temp">--/--</span><span class="forecast-desc">No data</span></a></li><li><a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="Diakopto 10 day weather forecast"><span class="forecast-day">N/A</span><span class="forecast-temp">--/--</span><span class="forecast-desc">No data</span></a></li>`;
     if (outroForecast2El) {
-      outroForecast2El.innerHTML = '<li><span class="forecast-day">N/A</span><span class="forecast-temp">--/--</span><span class="forecast-desc">No data</span></li><li><span class="forecast-day">N/A</span><span class="forecast-temp">--/--</span><span class="forecast-desc">No data</span></li>';
+      outroForecast2El.innerHTML = `<li><a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="Diakopto 10 day weather forecast"><span class="forecast-day">N/A</span><span class="forecast-temp">--/--</span><span class="forecast-desc">No data</span></a></li><li><a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="Diakopto 10 day weather forecast"><span class="forecast-day">N/A</span><span class="forecast-temp">--/--</span><span class="forecast-desc">No data</span></a></li>`;
     }
   }
 }
@@ -444,12 +484,12 @@ async function updateOdontotosWeatherData() {
 }
 
 async function updateBeachesWeatherData() {
-  if (!beachesTempEl || !beachesForecastEl || !beachesWeatherSymbolEl) {
+  if (!beachesTempEl || !beachesForecastEl || !beachesWeatherSymbolEl || !beachesSeaTempEl || !beachesUvEl || !beachesWindEl) {
     return;
   }
 
   try {
-    const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${EGKALI_BEACH_COORDS.lat}&longitude=${EGKALI_BEACH_COORDS.lon}&current=temperature_2m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Europe%2FAthens`;
+    const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${EGKALI_BEACH_COORDS.lat}&longitude=${EGKALI_BEACH_COORDS.lon}&current=temperature_2m,uv_index,wind_speed_10m,wind_direction_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Europe%2FAthens`;
     const response = await fetch(apiUrl, { cache: 'no-store' });
 
     if (!response.ok) {
@@ -458,6 +498,9 @@ async function updateBeachesWeatherData() {
 
     const data = await response.json();
     const temperature = data?.current?.temperature_2m;
+    const uvIndex = data?.current?.uv_index;
+    const windSpeed = data?.current?.wind_speed_10m;
+    const windDirection = data?.current?.wind_direction_10m;
     const weatherCode = data?.daily?.weather_code?.[0];
     const maxTemp = data?.daily?.temperature_2m_max?.[0];
     const minTemp = data?.daily?.temperature_2m_min?.[0];
@@ -476,10 +519,46 @@ async function updateBeachesWeatherData() {
     } else {
       beachesForecastEl.textContent = 'N/A';
     }
+
+    beachesUvEl.textContent = typeof uvIndex === 'number' ? `UV: ${uvIndex.toFixed(1)}` : 'UV: N/A';
+
+    if (typeof windSpeed === 'number') {
+      const directionLabel = degreesToCompass(windDirection);
+      const beaufortScale = toBeaufortScale(windSpeed);
+      const beaufortLabel = typeof beaufortScale === 'number' ? `${beaufortScale} Bft` : '-- Bft';
+      beachesWindEl.textContent = `${beaufortLabel} / ${windSpeed.toFixed(1)} km/h (${directionLabel})`;
+    } else {
+      beachesWindEl.textContent = 'N/A / N/A (--)';
+    }
+
+    const marineApiUrl = `https://marine-api.open-meteo.com/v1/marine?latitude=${EGKALI_BEACH_COORDS.lat}&longitude=${EGKALI_BEACH_COORDS.lon}&hourly=sea_surface_temperature&timezone=Europe%2FAthens`;
+    const marineResponse = await fetch(marineApiUrl, { cache: 'no-store' });
+
+    if (!marineResponse.ok) {
+      throw new Error(`Marine API error: ${marineResponse.status}`);
+    }
+
+    const marineData = await marineResponse.json();
+    const seaTemperatureValues = marineData?.hourly?.sea_surface_temperature || [];
+    const seaTemperatureTimes = marineData?.hourly?.time || [];
+    const currentHourIso = new Date().toISOString().slice(0, 13);
+    const matchingIndex = seaTemperatureTimes.findIndex((time) => typeof time === 'string' && time.slice(0, 13) === currentHourIso);
+    const seaTemperature = matchingIndex >= 0
+      ? seaTemperatureValues[matchingIndex]
+      : seaTemperatureValues.find((value) => typeof value === 'number');
+
+    if (typeof seaTemperature === 'number') {
+      beachesSeaTempEl.textContent = `Sea: ${seaTemperature.toFixed(1)}°C`;
+    } else {
+      beachesSeaTempEl.textContent = 'Sea: N/A';
+    }
   } catch (error) {
     beachesTempEl.textContent = 'N/A';
     beachesForecastEl.textContent = 'N/A';
     beachesWeatherSymbolEl.innerHTML = getWeatherIconSvg('partly');
+    beachesSeaTempEl.textContent = 'Sea: N/A';
+    beachesUvEl.textContent = 'UV: N/A';
+    beachesWindEl.textContent = 'N/A / N/A (--)';
   }
 }
 
