@@ -26,6 +26,8 @@ const beachesUvEl = document.getElementById('beaches-uv');
 const beachesWindEl = document.getElementById('beaches-wind');
 const localDateEl = document.getElementById('local-date');
 const localTimeEl = document.getElementById('local-time');
+const langToggleButtons = document.querySelectorAll('.lang-toggle-btn');
+const outroFooterEl = document.getElementById('outro-footer');
 
 const DIAKOPTO_COORDS = {
   lat: 38.191,
@@ -48,6 +50,235 @@ const EGKALI_BEACH_COORDS = {
 };
 const DIAKOPTO_TENDAY_WEATHER_URL = 'https://weather.com/weather/tenday/l/38.191,22.201';
 const HERO_BACKGROUND_SRC = 'assets/photos/section_1/sea-big.webp';
+
+const SUPPORTED_LANGUAGES = ['en', 'el'];
+let currentLanguage = localStorage.getItem('discover-language');
+
+if (!SUPPORTED_LANGUAGES.includes(currentLanguage)) {
+  currentLanguage = 'en';
+}
+
+const I18N = {
+  en: {
+    pageTitle: 'Discover Diakopto',
+    na: 'N/A',
+    noData: 'No data',
+    seaPrefix: 'Sea',
+    uvPrefix: 'UV',
+    tenDayForecastAria: 'Diakopto 10 day weather forecast',
+    footer: 'Designed by <span class="outro-studio">NOUSTELOS_STUDIO /></span> official partner of <span class="outro-host">WEB HOST PRO</span> Aigialeia | 2026 © all rights reserved.',
+    textById: {
+      'hero-maps-label': 'Google Maps',
+      'hero-stay': 'STAY',
+      'hero-train': 'TRAIN',
+      'hero-tickets': 'TICKETS',
+      'hero-plan': 'PLAN',
+      'odontotos-title': 'Odontotos Railway',
+      'odontotos-subtitle': 'A journey carved into the mountain.',
+      'odontotos-discover': '→ Discover',
+      'odontotos-maps': 'GOOGLE MAPS',
+      'odontotos-tickets': 'TICKETS',
+      'odontotos-station': 'Diakopto Station',
+      'gorge-title': 'Vouraikos Gorge',
+      'gorge-subtitle': 'Where silence becomes landscape.',
+      'gorge-discover': '→ Discover',
+      'gorge-maps': 'Google Maps ↗',
+      'beaches-title': 'Beaches',
+      'beaches-subtitle': 'Light, salt, and slow time.',
+      'beaches-discover': '→ Discover',
+      'beaches-maps': 'Google Maps ↗',
+      'local-title': 'Local Life',
+      'local-subtitle': 'Moments that don\'t try too hard.',
+      'local-discover': '→ Discover',
+      'local-breakfast': 'Breakfast',
+      'local-eat': 'Eat like a local',
+      'local-activities': 'Activities',
+      'local-useful': 'Useful Info',
+      'outro-title': 'Diakopto isn\'t a place.',
+      'outro-subtitle': 'It\'s a pause.',
+      'outro-stay': 'STAY',
+      'outro-train': 'TRAIN',
+      'outro-map': 'MAP',
+      'outro-plan': 'PLAN',
+    },
+    ariaById: {
+      'hero-stay': 'Stay options',
+      'hero-train': 'Train options',
+      'hero-tickets': 'Tickets options',
+      'hero-plan': 'Plan your visit',
+      'diakopto-forecast': 'Diakopto weekly weather forecast',
+      'odontotos-forecast': 'Odontotos weekly weather forecast',
+      'gorge-forecast': 'Vouraikos Gorge weekly weather forecast',
+      'beaches-forecast': 'Egkali beach weekly weather forecast',
+      'odontotos-maps': 'Google Maps route',
+      'odontotos-tickets': 'Tickets',
+      'odontotos-station': 'Call Diakopto Station',
+      'local-breakfast': 'Breakfast',
+      'local-eat': 'Eat like a local',
+      'local-activities': 'Activities',
+      'local-useful': 'Useful info',
+      'outro-stay': 'Stay options',
+      'outro-train': 'Train options',
+      'outro-map': 'Open map',
+      'outro-plan': 'Plan your visit',
+    },
+    weatherMap: {
+      0: 'Clear sky',
+      1: 'Mostly clear',
+      2: 'Partly cloudy',
+      3: 'Overcast',
+      45: 'Fog',
+      48: 'Rime fog',
+      51: 'Light drizzle',
+      53: 'Drizzle',
+      55: 'Heavy drizzle',
+      61: 'Light rain',
+      63: 'Rain',
+      65: 'Heavy rain',
+      71: 'Light snow',
+      73: 'Snow',
+      75: 'Heavy snow',
+      80: 'Light showers',
+      81: 'Showers',
+      82: 'Heavy showers',
+      95: 'Thunderstorm',
+      96: 'Thunderstorm with hail',
+      99: 'Severe thunderstorm with hail',
+    },
+    weatherDefault: 'Variable weather',
+  },
+  el: {
+    pageTitle: 'Ανακαλύψτε το Διακοπτό',
+    na: 'Δ/Υ',
+    noData: 'Χωρίς δεδομένα',
+    seaPrefix: 'Θάλασσα',
+    uvPrefix: 'UV',
+    tenDayForecastAria: '10ήμερη πρόγνωση καιρού Διακοπτού',
+    footer: 'Σχεδιασμός από <span class="outro-studio">NOUSTELOS_STUDIO /></span> επίσημος συνεργάτης της <span class="outro-host">WEB HOST PRO</span> Αιγιάλειας | 2026 © με επιφύλαξη παντός δικαιώματος.',
+    textById: {
+      'hero-maps-label': 'Google Maps',
+      'hero-stay': 'ΔΙΑΜΟΝΗ',
+      'hero-train': 'ΤΡΑΙΝΟ',
+      'hero-tickets': 'ΕΙΣΙΤΗΡΙΑ',
+      'hero-plan': 'ΠΛΑΝΟ',
+      'odontotos-title': 'Οδοντωτός Σιδηρόδρομος',
+      'odontotos-subtitle': 'Μια διαδρομή χαραγμένη στο βουνό.',
+      'odontotos-discover': '→ Ανακάλυψε',
+      'odontotos-maps': 'GOOGLE MAPS',
+      'odontotos-tickets': 'ΕΙΣΙΤΗΡΙΑ',
+      'odontotos-station': 'Σταθμός Διακοπτού',
+      'gorge-title': 'Φαράγγι Βουραϊκού',
+      'gorge-subtitle': 'Εκεί όπου η σιωπή γίνεται τοπίο.',
+      'gorge-discover': '→ Ανακάλυψε',
+      'gorge-maps': 'Google Maps ↗',
+      'beaches-title': 'Παραλίες',
+      'beaches-subtitle': 'Φως, αλάτι και αργός χρόνος.',
+      'beaches-discover': '→ Ανακάλυψε',
+      'beaches-maps': 'Google Maps ↗',
+      'local-title': 'Τοπική Ζωή',
+      'local-subtitle': 'Στιγμές χωρίς προσπάθεια.',
+      'local-discover': '→ Ανακάλυψε',
+      'local-breakfast': 'Πρωινό',
+      'local-eat': 'Φαγητό σαν ντόπιος',
+      'local-activities': 'Δραστηριότητες',
+      'local-useful': 'Χρήσιμες Πληροφορίες',
+      'outro-title': 'Το Διακοπτό δεν είναι απλώς τόπος.',
+      'outro-subtitle': 'Είναι μια παύση.',
+      'outro-stay': 'ΔΙΑΜΟΝΗ',
+      'outro-train': 'ΤΡΑΙΝΟ',
+      'outro-map': 'ΧΑΡΤΗΣ',
+      'outro-plan': 'ΠΛΑΝΟ',
+    },
+    ariaById: {
+      'hero-stay': 'Επιλογές διαμονής',
+      'hero-train': 'Επιλογές τρένου',
+      'hero-tickets': 'Επιλογές εισιτηρίων',
+      'hero-plan': 'Οργάνωσε την επίσκεψή σου',
+      'diakopto-forecast': 'Εβδομαδιαία πρόγνωση καιρού Διακοπτού',
+      'odontotos-forecast': 'Εβδομαδιαία πρόγνωση καιρού Οδοντωτού',
+      'gorge-forecast': 'Εβδομαδιαία πρόγνωση καιρού Φαραγγιού Βουραϊκού',
+      'beaches-forecast': 'Εβδομαδιαία πρόγνωση καιρού Παραλιών Εγκάλης',
+      'odontotos-maps': 'Διαδρομή Google Maps',
+      'odontotos-tickets': 'Εισιτήρια',
+      'odontotos-station': 'Κλήση Σταθμού Διακοπτού',
+      'local-breakfast': 'Πρωινό',
+      'local-eat': 'Φαγητό σαν ντόπιος',
+      'local-activities': 'Δραστηριότητες',
+      'local-useful': 'Χρήσιμες πληροφορίες',
+      'outro-stay': 'Επιλογές διαμονής',
+      'outro-train': 'Επιλογές τρένου',
+      'outro-map': 'Άνοιγμα χάρτη',
+      'outro-plan': 'Οργάνωσε την επίσκεψή σου',
+    },
+    weatherMap: {
+      0: 'Καθαρός ουρανός',
+      1: 'Κυρίως αίθριος',
+      2: 'Λίγες νεφώσεις',
+      3: 'Συννεφιά',
+      45: 'Ομίχλη',
+      48: 'Παγετώδης ομίχλη',
+      51: 'Ασθενής ψιχάλα',
+      53: 'Ψιχάλα',
+      55: 'Ισχυρή ψιχάλα',
+      61: 'Ελαφριά βροχή',
+      63: 'Βροχή',
+      65: 'Ισχυρή βροχή',
+      71: 'Ασθενής χιονόπτωση',
+      73: 'Χιονόπτωση',
+      75: 'Ισχυρή χιονόπτωση',
+      80: 'Ασθενείς μπόρες',
+      81: 'Μπόρες',
+      82: 'Ισχυρές μπόρες',
+      95: 'Καταιγίδα',
+      96: 'Καταιγίδα με χαλάζι',
+      99: 'Ισχυρή καταιγίδα με χαλάζι',
+    },
+    weatherDefault: 'Μεταβλητός καιρός',
+  },
+};
+
+function t(key) {
+  return I18N[currentLanguage][key];
+}
+
+function setElementTextById(elementId, text) {
+  const element = document.getElementById(elementId);
+  if (!element) {
+    return;
+  }
+
+  element.textContent = text;
+}
+
+function applyLanguage(languageCode) {
+  const normalizedLanguage = SUPPORTED_LANGUAGES.includes(languageCode) ? languageCode : 'en';
+  currentLanguage = normalizedLanguage;
+  localStorage.setItem('discover-language', currentLanguage);
+
+  document.documentElement.lang = currentLanguage;
+  document.title = t('pageTitle');
+
+  Object.entries(t('textById')).forEach(([elementId, value]) => {
+    setElementTextById(elementId, value);
+  });
+
+  Object.entries(t('ariaById')).forEach(([elementId, value]) => {
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.setAttribute('aria-label', value);
+    }
+  });
+
+  if (outroFooterEl) {
+    outroFooterEl.innerHTML = t('footer');
+  }
+
+  langToggleButtons.forEach((button) => {
+    const isActive = button.dataset.lang === currentLanguage;
+    button.classList.toggle('active', isActive);
+    button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  });
+}
 
 function activateHeroWhenBackgroundReady() {
   const hero = document.querySelector('.hero');
@@ -98,7 +329,9 @@ function updateDiakoptoClock() {
 
   const now = new Date();
 
-  const fullDateFormatter = new Intl.DateTimeFormat('en-GB', {
+  const locale = currentLanguage === 'el' ? 'el-GR' : 'en-GB';
+
+  const fullDateFormatter = new Intl.DateTimeFormat(locale, {
     timeZone: 'Europe/Athens',
     weekday: 'long',
     day: 'numeric',
@@ -134,7 +367,7 @@ function updateDiakoptoClock() {
   }
 
   if (diakoptoTimeEl) {
-    const timeFormatter = new Intl.DateTimeFormat('en-GB', {
+    const timeFormatter = new Intl.DateTimeFormat(locale, {
       timeZone: 'Europe/Athens',
       hour: '2-digit',
       minute: '2-digit',
@@ -148,7 +381,7 @@ function updateDiakoptoClock() {
       localTimeEl.textContent = removeAccentsFromGreekCapitals(timeFormatter.format(now));
     }
   } else if (localTimeEl) {
-    const localTimeFormatter = new Intl.DateTimeFormat('en-GB', {
+    const localTimeFormatter = new Intl.DateTimeFormat(locale, {
       timeZone: 'Europe/Athens',
       hour: '2-digit',
       minute: '2-digit',
@@ -161,31 +394,8 @@ function updateDiakoptoClock() {
 }
 
 function getWeatherLabel(weatherCode) {
-  const weatherMap = {
-    0: 'Clear sky',
-    1: 'Mostly clear',
-    2: 'Partly cloudy',
-    3: 'Overcast',
-    45: 'Fog',
-    48: 'Rime fog',
-    51: 'Light drizzle',
-    53: 'Drizzle',
-    55: 'Heavy drizzle',
-    61: 'Light rain',
-    63: 'Rain',
-    65: 'Heavy rain',
-    71: 'Light snow',
-    73: 'Snow',
-    75: 'Heavy snow',
-    80: 'Light showers',
-    81: 'Showers',
-    82: 'Heavy showers',
-    95: 'Thunderstorm',
-    96: 'Thunderstorm with hail',
-    99: 'Severe thunderstorm with hail',
-  };
-
-  return weatherMap[weatherCode] || 'Variable weather';
+  const weatherMap = t('weatherMap');
+  return weatherMap[weatherCode] || t('weatherDefault');
 }
 
 function getWeatherSymbol(weatherCode) {
@@ -276,7 +486,8 @@ function formatForecastDay(dateString, weatherCode, minTemp, maxTemp) {
   }
 
   const date = new Date(`${dateString}T00:00:00`);
-  const dayLabel = new Intl.DateTimeFormat('en-GB', {
+  const locale = currentLanguage === 'el' ? 'el-GR' : 'en-GB';
+  const dayLabel = new Intl.DateTimeFormat(locale, {
     weekday: 'short',
     timeZone: 'Europe/Athens',
   }).format(date);
@@ -310,7 +521,7 @@ function renderThreeDayForecast(dailyData) {
   diakoptoForecast3El.innerHTML = items
     .map((item) => `
       <li>
-        <a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="Diakopto 10 day weather forecast">
+        <a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="${t('tenDayForecastAria')}">
           <span class="forecast-day">${item.day}</span>
           <span class="forecast-temp"><span class="forecast-icon">${getWeatherIconSvg(item.symbol)}</span>${item.temp}</span>
           <span class="forecast-desc">${item.desc}</span>
@@ -337,7 +548,7 @@ function renderOutroTwoDayForecast(dailyData) {
   outroForecast2El.innerHTML = items
     .map((item) => `
       <li>
-        <a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="Diakopto 10 day weather forecast">
+        <a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="${t('tenDayForecastAria')}">
           <span class="forecast-day">${item.day}</span>
           <span class="forecast-temp"><span class="forecast-icon">${getWeatherIconSvg(item.symbol)}</span>${item.temp}</span>
           <span class="forecast-desc">${item.desc}</span>
@@ -379,7 +590,7 @@ async function updateDiakoptoWeatherData() {
       const forecastLabel = removeAccentsFromGreekCapitals(getWeatherLabel(weatherCode));
       diakoptoForecastEl.textContent = `${forecastLabel} (${minTemp.toFixed(0)}° / ${maxTemp.toFixed(0)}°)`;
     } else {
-      diakoptoForecastEl.textContent = 'N/A';
+      diakoptoForecastEl.textContent = t('na');
     }
 
     if (diakoptoWeatherSymbolEl) {
@@ -390,15 +601,15 @@ async function updateDiakoptoWeatherData() {
     renderThreeDayForecast(daily);
     renderOutroTwoDayForecast(daily);
   } catch (error) {
-    diakoptoTempEl.textContent = 'N/A';
-    diakoptoForecastEl.textContent = 'N/A';
+    diakoptoTempEl.textContent = t('na');
+    diakoptoForecastEl.textContent = t('na');
     diakoptoSunEl.textContent = '--:-- / --:--';
     if (diakoptoWeatherSymbolEl) {
       diakoptoWeatherSymbolEl.innerHTML = getWeatherIconSvg('partly');
     }
-    diakoptoForecast3El.innerHTML = `<li><a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="Diakopto 10 day weather forecast"><span class="forecast-day">N/A</span><span class="forecast-temp">--/--</span><span class="forecast-desc">No data</span></a></li><li><a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="Diakopto 10 day weather forecast"><span class="forecast-day">N/A</span><span class="forecast-temp">--/--</span><span class="forecast-desc">No data</span></a></li>`;
+    diakoptoForecast3El.innerHTML = `<li><a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="${t('tenDayForecastAria')}"><span class="forecast-day">${t('na')}</span><span class="forecast-temp">--/--</span><span class="forecast-desc">${t('noData')}</span></a></li><li><a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="${t('tenDayForecastAria')}"><span class="forecast-day">${t('na')}</span><span class="forecast-temp">--/--</span><span class="forecast-desc">${t('noData')}</span></a></li>`;
     if (outroForecast2El) {
-      outroForecast2El.innerHTML = `<li><a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="Diakopto 10 day weather forecast"><span class="forecast-day">N/A</span><span class="forecast-temp">--/--</span><span class="forecast-desc">No data</span></a></li><li><a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="Diakopto 10 day weather forecast"><span class="forecast-day">N/A</span><span class="forecast-temp">--/--</span><span class="forecast-desc">No data</span></a></li>`;
+      outroForecast2El.innerHTML = `<li><a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="${t('tenDayForecastAria')}"><span class="forecast-day">${t('na')}</span><span class="forecast-temp">--/--</span><span class="forecast-desc">${t('noData')}</span></a></li><li><a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="${t('tenDayForecastAria')}"><span class="forecast-day">${t('na')}</span><span class="forecast-temp">--/--</span><span class="forecast-desc">${t('noData')}</span></a></li>`;
     }
   }
 }
@@ -434,11 +645,11 @@ async function updateGorgeWeatherData() {
       const forecastLabel = removeAccentsFromGreekCapitals(getWeatherLabel(weatherCode));
       gorgeForecastEl.textContent = `${forecastLabel} (${minTemp.toFixed(0)}° / ${maxTemp.toFixed(0)}°)`;
     } else {
-      gorgeForecastEl.textContent = 'N/A';
+      gorgeForecastEl.textContent = t('na');
     }
   } catch (error) {
-    gorgeTempEl.textContent = 'N/A';
-    gorgeForecastEl.textContent = 'N/A';
+    gorgeTempEl.textContent = t('na');
+    gorgeForecastEl.textContent = t('na');
     gorgeWeatherSymbolEl.innerHTML = getWeatherIconSvg('partly');
   }
 }
@@ -474,11 +685,11 @@ async function updateOdontotosWeatherData() {
       const forecastLabel = removeAccentsFromGreekCapitals(getWeatherLabel(weatherCode));
       odontotosForecastEl.textContent = `${forecastLabel} (${minTemp.toFixed(0)}° / ${maxTemp.toFixed(0)}°)`;
     } else {
-      odontotosForecastEl.textContent = 'N/A';
+      odontotosForecastEl.textContent = t('na');
     }
   } catch (error) {
-    odontotosTempEl.textContent = 'N/A';
-    odontotosForecastEl.textContent = 'N/A';
+    odontotosTempEl.textContent = t('na');
+    odontotosForecastEl.textContent = t('na');
     odontotosWeatherSymbolEl.innerHTML = getWeatherIconSvg('partly');
   }
 }
@@ -517,10 +728,10 @@ async function updateBeachesWeatherData() {
       const forecastLabel = removeAccentsFromGreekCapitals(getWeatherLabel(weatherCode));
       beachesForecastEl.textContent = `${forecastLabel} (${minTemp.toFixed(0)}° / ${maxTemp.toFixed(0)}°)`;
     } else {
-      beachesForecastEl.textContent = 'N/A';
+      beachesForecastEl.textContent = t('na');
     }
 
-    beachesUvEl.textContent = typeof uvIndex === 'number' ? `UV: ${uvIndex.toFixed(1)}` : 'UV: N/A';
+    beachesUvEl.textContent = typeof uvIndex === 'number' ? `${t('uvPrefix')}: ${uvIndex.toFixed(1)}` : `${t('uvPrefix')}: ${t('na')}`;
 
     if (typeof windSpeed === 'number') {
       const directionLabel = degreesToCompass(windDirection);
@@ -528,7 +739,7 @@ async function updateBeachesWeatherData() {
       const beaufortLabel = typeof beaufortScale === 'number' ? `${beaufortScale} Bft` : '-- Bft';
       beachesWindEl.textContent = `${beaufortLabel} / ${windSpeed.toFixed(1)} km/h (${directionLabel})`;
     } else {
-      beachesWindEl.textContent = 'N/A / N/A (--)';
+      beachesWindEl.textContent = `${t('na')} / ${t('na')} (--)`;
     }
 
     const marineApiUrl = `https://marine-api.open-meteo.com/v1/marine?latitude=${EGKALI_BEACH_COORDS.lat}&longitude=${EGKALI_BEACH_COORDS.lon}&hourly=sea_surface_temperature&timezone=Europe%2FAthens`;
@@ -548,22 +759,43 @@ async function updateBeachesWeatherData() {
       : seaTemperatureValues.find((value) => typeof value === 'number');
 
     if (typeof seaTemperature === 'number') {
-      beachesSeaTempEl.textContent = `Sea: ${seaTemperature.toFixed(1)}°C`;
+      beachesSeaTempEl.textContent = `${t('seaPrefix')}: ${seaTemperature.toFixed(1)}°C`;
     } else {
-      beachesSeaTempEl.textContent = 'Sea: N/A';
+      beachesSeaTempEl.textContent = `${t('seaPrefix')}: ${t('na')}`;
     }
   } catch (error) {
-    beachesTempEl.textContent = 'N/A';
-    beachesForecastEl.textContent = 'N/A';
+    beachesTempEl.textContent = t('na');
+    beachesForecastEl.textContent = t('na');
     beachesWeatherSymbolEl.innerHTML = getWeatherIconSvg('partly');
-    beachesSeaTempEl.textContent = 'Sea: N/A';
-    beachesUvEl.textContent = 'UV: N/A';
-    beachesWindEl.textContent = 'N/A / N/A (--)';
+    beachesSeaTempEl.textContent = `${t('seaPrefix')}: ${t('na')}`;
+    beachesUvEl.textContent = `${t('uvPrefix')}: ${t('na')}`;
+    beachesWindEl.textContent = `${t('na')} / ${t('na')} (--)`;
   }
 }
 
+function refreshAllLiveData() {
+  updateDiakoptoClock();
+  updateDiakoptoWeatherData();
+  updateOdontotosWeatherData();
+  updateGorgeWeatherData();
+  updateBeachesWeatherData();
+}
+
+langToggleButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const requestedLanguage = button.dataset.lang;
+    if (!requestedLanguage || requestedLanguage === currentLanguage) {
+      return;
+    }
+
+    applyLanguage(requestedLanguage);
+    refreshAllLiveData();
+  });
+});
+
 window.addEventListener('load', () => {
   activateHeroWhenBackgroundReady();
+  applyLanguage(currentLanguage);
 
   if (diakoptoWeatherSymbolEl) {
     diakoptoWeatherSymbolEl.innerHTML = getWeatherIconSvg('partly');
@@ -581,11 +813,7 @@ window.addEventListener('load', () => {
     beachesWeatherSymbolEl.innerHTML = getWeatherIconSvg('partly');
   }
 
-  updateDiakoptoClock();
-  updateDiakoptoWeatherData();
-  updateOdontotosWeatherData();
-  updateGorgeWeatherData();
-  updateBeachesWeatherData();
+  refreshAllLiveData();
 
   setInterval(updateDiakoptoClock, 1000);
   setInterval(updateDiakoptoWeatherData, 30 * 60 * 1000);

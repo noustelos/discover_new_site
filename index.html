@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="lang-toggle" role="group" aria-label="Language toggle">
+      <button class="lang-toggle-btn active" id="lang-en" data-lang="en" type="button" aria-pressed="true">EN</button>
+      <button class="lang-toggle-btn" id="lang-el" data-lang="el" type="button" aria-pressed="false">EL</button>
+    </div>
     <main>
       <section class="panel hero" aria-label="Hero section">
         <div class="content">
@@ -21,7 +25,7 @@
             <span>D</span><span>I</span><span>A</span><span>K</span><span>O</span><span>P</span><span>T</span><span>O</span>
           </h1>
           <div class="hero-live control-panel" aria-live="polite">
-            <div class="metric-row">
+            <div class="metric-row metric-row-centered-value">
               <div class="metric-meta">
                 <span class="metric-icon" aria-hidden="true">
                   <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,7 +38,7 @@
               </div>
               <strong class="metric-value" id="diakopto-date">--/--/----</strong>
             </div>
-            <div class="metric-row">
+            <div class="metric-row metric-row-time">
               <div class="metric-meta">
                 <span class="metric-icon" aria-hidden="true">
                   <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -45,7 +49,7 @@
               </div>
               <strong class="metric-value" id="diakopto-time">--:--:--</strong>
             </div>
-            <div class="metric-row">
+            <div class="metric-row metric-row-centered-value">
               <div class="metric-meta">
                 <span class="metric-icon" aria-hidden="true">
                   <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,13 +61,13 @@
               </div>
               <strong class="metric-value" id="diakopto-temp">--.-°C</strong>
             </div>
-            <div class="metric-row">
+            <div class="metric-row metric-row-centered-value">
               <div class="metric-meta">
                 <span class="metric-icon metric-weather-icon" id="diakopto-weather-symbol" data-weather-icon="sun" aria-hidden="true"></span>
               </div>
               <a class="metric-value metric-link" id="diakopto-forecast" href="https://weather.com/weather/tenday/l/38.191,22.201" target="_blank" rel="noopener noreferrer" aria-label="Diakopto weekly weather forecast">--</a>
             </div>
-            <div class="metric-row">
+            <div class="metric-row metric-row-centered-value">
               <div class="metric-meta">
                 <span class="metric-icon" aria-hidden="true">
                   <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -87,17 +91,17 @@
                     <path d="M12 3.3C14.5 5.7 15.9 8.8 15.9 12C15.9 15.2 14.5 18.3 12 20.7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
                   </svg>
                 </span>
-                <span>Google Maps</span>
+                <span id="hero-maps-label">Google Maps</span>
               </a>
               <ul class="hero-forecast3" id="diakopto-forecast3">
                 <li>--</li>
                 <li>--</li>
               </ul>
               <div class="hero-actions">
-                <a class="metric-value metric-link" href="https://www.tripadvisor.com.gr/Hotels-g5496177-Diakopto_Achaea_Region_West_Greece-Hotels.html" target="_blank" rel="noopener noreferrer" aria-label="Stay options">STAY</a>
-                <a class="metric-value metric-link" href="https://noustelos.github.io/odontotos/" target="_blank" rel="noopener noreferrer" aria-label="Train options">TRAIN</a>
-                <a class="metric-value metric-link" href="https://newtickets.hellenictrain.gr/Channels.HellenicTrainWeb/" target="_blank" rel="noopener noreferrer" aria-label="Tickets options">TICKETS</a>
-                <a class="metric-value metric-link" href="https://noustelos.github.io/odontotos/#visitor-section" target="_blank" rel="noopener noreferrer" aria-label="Plan your visit">PLAN</a>
+                <a class="metric-value metric-link" id="hero-stay" href="https://www.tripadvisor.com.gr/Hotels-g5496177-Diakopto_Achaea_Region_West_Greece-Hotels.html" target="_blank" rel="noopener noreferrer" aria-label="Stay options">STAY</a>
+                <a class="metric-value metric-link" id="hero-train" href="https://noustelos.github.io/odontotos/" target="_blank" rel="noopener noreferrer" aria-label="Train options">TRAIN</a>
+                <a class="metric-value metric-link" id="hero-tickets" href="https://newtickets.hellenictrain.gr/Channels.HellenicTrainWeb/" target="_blank" rel="noopener noreferrer" aria-label="Tickets options">TICKETS</a>
+                <a class="metric-value metric-link" id="hero-plan" href="https://noustelos.github.io/odontotos/#visitor-section" target="_blank" rel="noopener noreferrer" aria-label="Plan your visit">PLAN</a>
               </div>
             </div>
           </div>
@@ -106,9 +110,9 @@
 
       <section class="panel odontotos" aria-label="Odontotos Railway section">
         <div class="content">
-          <h2>Odontotos Railway</h2>
-          <p>A journey carved into the mountain.</p>
-          <a href="#">→ Discover</a>
+          <h2 id="odontotos-title">Odontotos Railway</h2>
+          <p id="odontotos-subtitle">A journey carved into the mountain.</p>
+          <a href="#" id="odontotos-discover">→ Discover</a>
           <div class="odontotos-live control-panel" aria-live="polite">
             <div class="odontotos-live-row">
               <span class="odontotos-live-icon" aria-hidden="true">
@@ -136,9 +140,9 @@
               <a class="metric-value metric-link" id="odontotos-forecast" href="https://weather.com/weather/tenday/l/38.035,22.110" target="_blank" rel="noopener noreferrer" aria-label="Odontotos weekly weather forecast">--</a>
             </div>
             <div class="odontotos-actions">
-              <a class="metric-value metric-link maps-action" href="https://www.google.com/maps/search/?api=1&query=Odontotos+Railway+Vouraikos+Gorge" target="_blank" rel="noopener noreferrer" aria-label="Google Maps route">GOOGLE MAPS</a>
-              <a class="metric-value metric-link train-action" href="https://newtickets.hellenictrain.gr/Channels.HellenicTrainWeb/" target="_blank" rel="noopener noreferrer" aria-label="Tickets">TICKETS</a>
-              <a class="metric-value metric-link info-action" href="tel:+302691043206" aria-label="Call Diakopto Station" title="Diakopto Station">Diakopto Station</a>
+              <a class="metric-value metric-link maps-action" id="odontotos-maps" href="https://www.google.com/maps/search/?api=1&query=Odontotos+Railway+Vouraikos+Gorge" target="_blank" rel="noopener noreferrer" aria-label="Google Maps route">GOOGLE MAPS</a>
+              <a class="metric-value metric-link train-action" id="odontotos-tickets" href="https://newtickets.hellenictrain.gr/Channels.HellenicTrainWeb/" target="_blank" rel="noopener noreferrer" aria-label="Tickets">TICKETS</a>
+              <a class="metric-value metric-link info-action" id="odontotos-station" href="tel:+302691043206" aria-label="Call Diakopto Station" title="Diakopto Station">Diakopto Station</a>
             </div>
           </div>
         </div>
@@ -146,9 +150,9 @@
 
       <section class="panel gorge" aria-label="Vouraikos Gorge section">
         <div class="content">
-          <h2>Vouraikos Gorge</h2>
-          <p>Where silence becomes landscape.</p>
-          <a href="#">→ Discover</a>
+          <h2 id="gorge-title">Vouraikos Gorge</h2>
+          <p id="gorge-subtitle">Where silence becomes landscape.</p>
+          <a href="#" id="gorge-discover">→ Discover</a>
           <div class="gorge-live control-panel" aria-live="polite">
             <div class="gorge-live-row">
               <span class="gorge-live-icon" aria-hidden="true">
@@ -175,16 +179,16 @@
               <span class="gorge-live-icon metric-weather-icon" id="gorge-weather-symbol" aria-hidden="true"></span>
               <a class="metric-value metric-link" id="gorge-forecast" href="https://weather.com/weather/tenday/l/38.089,22.166" target="_blank" rel="noopener noreferrer" aria-label="Vouraikos Gorge weekly weather forecast">--</a>
             </div>
-            <a class="gorge-link" href="https://www.google.com/maps?q=38.089,22.166" target="_blank" rel="noopener noreferrer">Google Maps ↗</a>
+            <a class="gorge-link" id="gorge-maps" href="https://www.google.com/maps?q=38.089,22.166" target="_blank" rel="noopener noreferrer">Google Maps ↗</a>
           </div>
         </div>
       </section>
 
       <section class="panel beaches" aria-label="Beaches section">
         <div class="content">
-          <h2>Beaches</h2>
-          <p>Light, salt, and slow time.</p>
-          <a href="#">→ Discover</a>
+          <h2 id="beaches-title">Beaches</h2>
+          <p id="beaches-subtitle">Light, salt, and slow time.</p>
+          <a href="#" id="beaches-discover">→ Discover</a>
           <div class="beaches-live control-panel" aria-live="polite">
             <div class="beaches-live-row">
               <span class="beaches-live-icon" aria-hidden="true">
@@ -211,7 +215,7 @@
               <span class="beaches-live-icon metric-weather-icon" id="beaches-weather-symbol" aria-hidden="true"></span>
               <a class="metric-value metric-link" id="beaches-forecast" href="https://weather.com/weather/tenday/l/38.173,22.160" target="_blank" rel="noopener noreferrer" aria-label="Egkali beach weekly weather forecast">--</a>
             </div>
-            <div class="beaches-live-row">
+            <div class="beaches-live-row beaches-sea-row">
               <span class="beaches-live-icon" aria-hidden="true">
                 <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M3.5 15.7C4.8 14.4 6.1 14.4 7.4 15.7C8.7 17 10 17 11.3 15.7C12.6 14.4 13.9 14.4 15.2 15.7C16.5 17 17.8 17 19.1 15.7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
@@ -241,16 +245,16 @@
               </span>
               <strong id="beaches-wind">-- Bft / -- km/h (--)</strong>
             </div>
-            <a class="beaches-link" href="https://www.google.com/maps?q=38.173,22.160" target="_blank" rel="noopener noreferrer">Google Maps ↗</a>
+            <a class="beaches-link" id="beaches-maps" href="https://www.google.com/maps?q=38.173,22.160" target="_blank" rel="noopener noreferrer">Google Maps ↗</a>
           </div>
         </div>
       </section>
 
       <section class="panel local" aria-label="Local Life section">
         <div class="content">
-          <h2>Local Life</h2>
-          <p>Moments that don't try too hard.</p>
-          <a href="#">→ Discover</a>
+          <h2 id="local-title">Local Life</h2>
+          <p id="local-subtitle">Moments that don't try too hard.</p>
+          <a href="#" id="local-discover">→ Discover</a>
           <div class="local-live control-panel" aria-live="polite">
             <div class="metric-row">
               <div class="metric-meta">
@@ -277,10 +281,10 @@
               <strong class="metric-value" id="local-time">--:--:--</strong>
             </div>
             <div class="local-actions">
-              <a class="metric-value metric-link" href="https://www.tripadvisor.com/Restaurants-g5496177-zfp2-Diakopto_Achaea_Region_West_Greece.html" target="_blank" rel="noopener noreferrer" aria-label="Breakfast">Breakfast</a>
-              <a class="metric-value metric-link" href="https://www.tripadvisor.com/Restaurants-g189485-Diakofto_Achaea_Region_West_Greece.html" target="_blank" rel="noopener noreferrer" aria-label="Eat like a local">Eat like a local</a>
-              <a class="metric-value metric-link" href="https://www.tripadvisor.com/Attractions-g5496177-Activities-Diakopto_Achaea_Region_West_Greece.html" target="_blank" rel="noopener noreferrer" aria-label="Activities">Activities</a>
-              <a class="metric-value metric-link" href="#" aria-label="Useful info">Useful Info</a>
+              <a class="metric-value metric-link" id="local-breakfast" href="https://www.tripadvisor.com/Restaurants-g5496177-zfp2-Diakopto_Achaea_Region_West_Greece.html" target="_blank" rel="noopener noreferrer" aria-label="Breakfast">Breakfast</a>
+              <a class="metric-value metric-link" id="local-eat" href="https://www.tripadvisor.com/Restaurants-g189485-Diakofto_Achaea_Region_West_Greece.html" target="_blank" rel="noopener noreferrer" aria-label="Eat like a local">Eat like a local</a>
+              <a class="metric-value metric-link" id="local-activities" href="https://www.tripadvisor.com/Attractions-g5496177-Activities-Diakopto_Achaea_Region_West_Greece.html" target="_blank" rel="noopener noreferrer" aria-label="Activities">Activities</a>
+              <a class="metric-value metric-link" id="local-useful" href="#" aria-label="Useful info">Useful Info</a>
             </div>
           </div>
         </div>
@@ -288,8 +292,8 @@
 
       <section class="panel outro" aria-label="Outro section">
         <div class="content">
-          <h2>Diakopto isn't a place.</h2>
-          <p>It's a pause.</p>
+          <h2 id="outro-title">Diakopto isn't a place.</h2>
+          <p id="outro-subtitle">It's a pause.</p>
           <div class="outro-live control-panel" aria-live="polite">
             <div class="metric-row">
               <div class="metric-meta">
@@ -311,14 +315,14 @@
             </ul>
 
             <div class="outro-actions">
-              <a class="metric-value metric-link" href="#" aria-label="Stay options">STAY</a>
-              <a class="metric-value metric-link" href="#" aria-label="Train options">TRAIN</a>
-              <a class="metric-value metric-link" href="https://www.google.com/maps?q=38.191,22.201" target="_blank" rel="noopener noreferrer" aria-label="Open map">MAP</a>
-              <a class="metric-value metric-link" href="#" aria-label="Plan your visit">PLAN</a>
+              <a class="metric-value metric-link" id="outro-stay" href="#" aria-label="Stay options">STAY</a>
+              <a class="metric-value metric-link" id="outro-train" href="#" aria-label="Train options">TRAIN</a>
+              <a class="metric-value metric-link" id="outro-map" href="https://www.google.com/maps?q=38.191,22.201" target="_blank" rel="noopener noreferrer" aria-label="Open map">MAP</a>
+              <a class="metric-value metric-link" id="outro-plan" href="#" aria-label="Plan your visit">PLAN</a>
             </div>
           </div>
         </div>
-        <p class="outro-footer">Designed by <span class="outro-studio">NOUSTELOS_STUDIO /></span> official partner of <span class="outro-host">WEB HOST PRO</span> Αιγιαλεια | 2026 © all rights reserved.</p>
+        <p class="outro-footer" id="outro-footer">Designed by <span class="outro-studio">NOUSTELOS_STUDIO /></span> official partner of <span class="outro-host">WEB HOST PRO</span> Aigialeia | 2026 © all rights reserved.</p>
       </section>
     </main>
 
