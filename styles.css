@@ -1150,6 +1150,16 @@ a {
     text-align: center;
   }
 
+  #diakopto-forecast.metric-link,
+  #odontotos-forecast.metric-link,
+  #gorge-forecast.metric-link,
+  #beaches-forecast.metric-link {
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   #diakopto-time.metric-value {
     letter-spacing: 0.08em;
   }
