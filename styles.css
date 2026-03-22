@@ -180,14 +180,9 @@ q,
 }
 
 .hero-subtitle {
-  margin: 0;
-  font-family: 'Sora', sans-serif;
-  font-size: clamp(0.92rem, 1.26vw, 1.14rem);
-  line-height: 1.5;
-  letter-spacing: 0.01em;
-  color: rgba(255, 255, 255, 0.96);
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
-  max-width: 66ch;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  opacity: 0.8;
 }
 
 .hero-title span {
@@ -352,6 +347,7 @@ q,
   text-align: center;
   flex: 1;
   align-self: stretch;
+  white-space: nowrap;
 }
 
 #diakopto-temp.metric-value {
@@ -649,6 +645,10 @@ q,
   justify-self: end;
   align-self: start;
   margin-top: 0.28rem;
+}
+
+#local-discover {
+  animation: discoverPulse 2.6s ease-in-out infinite;
 }
 
 .odontotos .content > a:hover,
@@ -1089,12 +1089,6 @@ a {
     border-radius: 16px;
   }
 
-  .hero-subtitle {
-    font-size: 0.82rem;
-    line-height: 1.38;
-    max-width: 100%;
-  }
-
   .hero-live,
   .odontotos-live,
   .gorge-live,
@@ -1158,6 +1152,10 @@ a {
 
   #diakopto-time.metric-value {
     letter-spacing: 0.08em;
+  }
+
+  #diakopto-date.metric-value {
+    font-size: clamp(0.76rem, 3.2vw, 0.94rem);
   }
 
   .hero-actions {
@@ -1300,11 +1298,6 @@ a {
   .hero-title {
     font-size: clamp(1.2rem, 7vw, 1.9rem);
     letter-spacing: 0.01em;
-  }
-
-  .hero-subtitle {
-    font-size: 0.78rem;
-    line-height: 1.34;
   }
 
   .hero-live,

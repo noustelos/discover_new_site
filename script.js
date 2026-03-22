@@ -4,7 +4,6 @@ const diakoptoDateEl = document.getElementById('diakopto-date');
 const diakoptoTimeEl = document.getElementById('diakopto-time');
 const diakoptoTempEl = document.getElementById('diakopto-temp');
 const diakoptoForecastEl = document.getElementById('diakopto-forecast');
-const diakoptoSunEl = document.getElementById('diakopto-sun');
 const diakoptoWeatherSymbolEl = document.getElementById('diakopto-weather-symbol');
 const diakoptoForecast3El = document.getElementById('diakopto-forecast3');
 const outroDateEl = document.getElementById('outro-date');
@@ -22,7 +21,6 @@ const beachesTempEl = document.getElementById('beaches-temp');
 const beachesForecastEl = document.getElementById('beaches-forecast');
 const beachesWeatherSymbolEl = document.getElementById('beaches-weather-symbol');
 const beachesSeaTempEl = document.getElementById('beaches-sea-temp');
-const beachesUvEl = document.getElementById('beaches-uv');
 const beachesWindEl = document.getElementById('beaches-wind');
 const localDateEl = document.getElementById('local-date');
 const localTimeEl = document.getElementById('local-time');
@@ -164,28 +162,28 @@ const I18N = {
       'hero-tickets': 'ΕΙΣΙΤΗΡΙΑ',
       'hero-plan': 'ΕΠΙΣΚΕΨΗ',
       'odontotos-title': 'Οδοντωτός Σιδηρόδρομος: Ένα Μηχανικό Επίτευγμα',
-      'odontotos-subtitle': 'Ο ιστορικός Οδοντωτός σιδηρόδρομος του 1896 διασχίζει τα 22 χιλιόμετρα του φαραγγιού του Βουραϊκού, ενεργοποιώντας τον ειδικό μηχανισμό με τα γρανάζια του για να σκαρφαλώσει σε απότομες ορεινές κλίσεις που αγγίζουν το 17,5%. Κατά την ανάβαση προς τα Καλάβρυτα, τα ευέλικτα βαγόνια περνούν πάνω από 49 γέφυρες και διαπερνούν τον συμπαγή βράχο μέσα από σκοτεινές σήραγγες με φυσικούς σταλαγμίτες, ειδικά στο τμήμα μεταξύ των σταθμών Νιάματα και Τρικλιά.',
+      'odontotos-subtitle': 'Ο ιστορικός Οδοντωτός σιδηρόδρομος του 1896 διασχίζει τα 22 χιλιόμετρα του φαραγγιού του Βουραϊκού, ενεργοποιώντας τον ειδικό μηχανισμό με τα γρανάζια του για να σκαρφαλώσει σε απότομες ορεινές κλίσεις που αγγίζουν το 17,5%.',
       'odontotos-discover': '→ Discover',
       'odontotos-maps': 'GOOGLE MAPS',
       'odontotos-tickets': 'ΕΙΣΙΤΗΡΙΑ',
       'odontotos-station': 'Σταθμός Διακοπτού',
       'gorge-title': 'Φαράγγι Βουραϊκού',
-      'gorge-subtitle': 'Το επιβλητικό ρήγμα των 20 χιλιομέτρων συνθέτει ένα σπάνιο γεωλογικό τοπίο, όπου ο ιστορικός Οδοντωτός σιδηρόδρομος του 1896 σκαρφαλώνει διασχίζοντας 49 γέφυρες και περνώντας μέσα από σκοτεινές σήραγγες με φυσικούς σταλαγμίτες ανάμεσα στους σταθμούς Νιάματα και Τρικλιά. Για να βιώσετε την απόλυτη ορεινή εξόρμηση, επιβιβαστείτε στα βαγόνια της αμαξοστοιχίας για να θαυμάσετε αναβάσεις με κλίσεις που αγγίζουν το 17,5% ή πεζοπορήστε στο ευρωπαϊκό μονοπάτι Ε4 που κινείται παράλληλα με τις ράγες δίπλα στο ορμητικό ποτάμι.',
+      'gorge-subtitle': 'Το επιβλητικό ρήγμα των 20 χιλιομέτρων συνθέτει ένα σπάνιο γεωλογικό τοπίο, όπου ο ιστορικός Οδοντωτός σιδηρόδρομος του 1896 σκαρφαλώνει διασχίζοντας 49 γέφυρες και περνώντας μέσα από σκοτεινές σήραγγες με φυσικούς σταλαγμίτες ανάμεσα στους σταθμούς Νιάματα και Τρικλιά.',
       'gorge-discover': '→ Discover',
       'gorge-maps': 'Google Maps ↗',
       'beaches-title': 'Παραλίες',
-      'beaches-subtitle': 'Ανακαλύψτε τον παραθαλάσσιο πλούτο της περιοχής κάνοντας βουτιές στα βαθιά νερά της λευκής, βοτσαλωτής παραλίας της Πούντας και χαλαρώνοντας στην αμμουδερή, οργανωμένη ακτή του Ελαιώνα. Εναλλακτικά, επισκεφθείτε την κοσμοπολίτικη παραλία Εγκάλη, όπου το ψιλό βότσαλο και τα προστατευμένα από τους ανέμους νερά συνθέτουν το απόλυτο σκηνικό για θαλάσσια σπορ.',
+      'beaches-subtitle': 'Ανακαλύψτε τον παραθαλάσσιο πλούτο της περιοχής κάνοντας βουτιές στα βαθιά γαλανά νερά της Πούντας, του Ελαιώνα και της Εγκάλης.',
       'beaches-discover': '→ Discover',
       'beaches-maps': 'Google Maps ↗',
       'local-title': 'Τοπική Ζωή',
-      'local-subtitle': 'Η τοπική ζωή στο Διακοπτό ξετυλίγεται γύρω από το γραφικό του λιμανάκι, όπου οι κάτοικοι απολαμβάνουν ολόφρεσκο ψάρι με θέα τον Κορινθιακό κόλπο. Η αυθεντική γαστρονομία αποτελεί το απόλυτο σημείο συνάντησης, με παραδοσιακά στέκια όπως το καφενείο "Ο Γουρλής" στα γειτονικά Ζαχλωρίτικα να συγκεντρώνουν τον κόσμο για σπιτικά μπιφτέκια και χειροποίητες τυρόπιτες.',
+      'local-subtitle': 'Η τοπική ζωή στο Διακοπτό ξετυλίγεται γύρω από το γραφικό του λιμανάκι, όπου οι κάτοικοι απολαμβάνουν ολόφρεσκο ψάρι με θέα τον Κορινθιακό κόλπο.',
       'local-discover': '→ Discover',
       'local-breakfast': 'Πρωινό',
       'local-eat': 'Φαγητό & Ποτό',
       'local-activities': 'Δραστηριότητες',
       'local-useful': 'Πληροφορίες',
       'outro-title': 'Σας περιμένουμε!',
-      'outro-subtitle': 'Το Διακοπτό ενώνει αρμονικά τον Κορινθιακό κόλπο με τον ορεινό όγκο του Χελμού, προσφέροντας στους ταξιδιώτες τη σπάνια ευκαιρία να επιβιβαστούν στον ιστορικό Οδοντωτό σιδηρόδρομο του 1896 για να διασχίσουν το γεωλογικό ρήγμα του Βουραϊκού. Παράλληλα με την ορεινή εξερεύνηση στο ευρωπαϊκό μονοπάτι Ε4, οι επισκέπτες απολαμβάνουν καταδύσεις στα βαθιά νερά της λευκής παραλίας Πούντα και δοκιμάζουν φρέσκο ψάρι στο γραφικό λιμανάκι του παραθαλάσσιου οικισμού.',
+      'outro-subtitle': 'Το Διακοπτό ενώνει αρμονικά τον Κορινθιακό κόλπο με τον ορεινό όγκο του Χελμού, προσφέροντας στους ταξιδιώτες τη σπάνια ευκαιρία να επιβιβαστούν στον ιστορικό Οδοντωτό σιδηρόδρομο του 1896, την ορεινή εξερεύνηση στο ευρωπαϊκό μονοπάτι Ε4 και καταδύσεις στα βαθιά νερά της λευκής παραλίας Πούντα και να δοκιμάζουν φρέσκο ψάρι στο γραφικό λιμανάκι του παραθαλάσσιου οικισμού.',
       'outro-stay': 'ΔΙΑΜΟΝΗ',
       'outro-train': 'ΤΡΑΙΝΟ',
       'outro-map': 'ΧΑΡΤΗΣ',
@@ -568,12 +566,12 @@ function renderOutroTwoDayForecast(dailyData) {
 }
 
 async function updateDiakoptoWeatherData() {
-  if (!diakoptoTempEl || !diakoptoForecastEl || !diakoptoSunEl || !diakoptoForecast3El) {
+  if (!diakoptoTempEl || !diakoptoForecastEl) {
     return;
   }
 
   try {
-    const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${DIAKOPTO_COORDS.lat}&longitude=${DIAKOPTO_COORDS.lon}&current=temperature_2m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset&timezone=Europe%2FAthens`;
+    const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${DIAKOPTO_COORDS.lat}&longitude=${DIAKOPTO_COORDS.lon}&current=temperature_2m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Europe%2FAthens`;
     const response = await fetch(apiUrl, { cache: 'no-store' });
 
     if (!response.ok) {
@@ -586,8 +584,6 @@ async function updateDiakoptoWeatherData() {
     const weatherCode = daily?.weather_code?.[0];
     const maxTemp = daily?.temperature_2m_max?.[0];
     const minTemp = daily?.temperature_2m_min?.[0];
-    const sunrise = daily?.sunrise?.[0];
-    const sunset = daily?.sunset?.[0];
 
     if (typeof temperature !== 'number') {
       throw new Error('Temperature is missing from API response');
@@ -606,17 +602,17 @@ async function updateDiakoptoWeatherData() {
       diakoptoWeatherSymbolEl.innerHTML = getWeatherIconSvg(getWeatherSymbol(weatherCode));
     }
 
-    diakoptoSunEl.textContent = `${formatIsoTime(sunrise)} / ${formatIsoTime(sunset)}`;
     renderThreeDayForecast(daily);
     renderOutroTwoDayForecast(daily);
   } catch (error) {
     diakoptoTempEl.textContent = t('na');
     diakoptoForecastEl.textContent = t('na');
-    diakoptoSunEl.textContent = '--:-- / --:--';
     if (diakoptoWeatherSymbolEl) {
       diakoptoWeatherSymbolEl.innerHTML = getWeatherIconSvg('partly');
     }
-    diakoptoForecast3El.innerHTML = `<li><a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="${t('tenDayForecastAria')}"><span class="forecast-day">${t('na')}</span><span class="forecast-temp">--/--</span><span class="forecast-desc">${t('noData')}</span></a></li><li><a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="${t('tenDayForecastAria')}"><span class="forecast-day">${t('na')}</span><span class="forecast-temp">--/--</span><span class="forecast-desc">${t('noData')}</span></a></li>`;
+    if (diakoptoForecast3El) {
+      diakoptoForecast3El.innerHTML = `<li><a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="${t('tenDayForecastAria')}"><span class="forecast-day">${t('na')}</span><span class="forecast-temp">--/--</span><span class="forecast-desc">${t('noData')}</span></a></li><li><a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="${t('tenDayForecastAria')}"><span class="forecast-day">${t('na')}</span><span class="forecast-temp">--/--</span><span class="forecast-desc">${t('noData')}</span></a></li>`;
+    }
     if (outroForecast2El) {
       outroForecast2El.innerHTML = `<li><a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="${t('tenDayForecastAria')}"><span class="forecast-day">${t('na')}</span><span class="forecast-temp">--/--</span><span class="forecast-desc">${t('noData')}</span></a></li><li><a class="forecast-link-card metric-link" href="${DIAKOPTO_TENDAY_WEATHER_URL}" target="_blank" rel="noopener noreferrer" aria-label="${t('tenDayForecastAria')}"><span class="forecast-day">${t('na')}</span><span class="forecast-temp">--/--</span><span class="forecast-desc">${t('noData')}</span></a></li>`;
     }
@@ -704,12 +700,12 @@ async function updateOdontotosWeatherData() {
 }
 
 async function updateBeachesWeatherData() {
-  if (!beachesTempEl || !beachesForecastEl || !beachesWeatherSymbolEl || !beachesSeaTempEl || !beachesUvEl || !beachesWindEl) {
+  if (!beachesTempEl || !beachesForecastEl || !beachesWeatherSymbolEl || !beachesSeaTempEl || !beachesWindEl) {
     return;
   }
 
   try {
-    const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${EGKALI_BEACH_COORDS.lat}&longitude=${EGKALI_BEACH_COORDS.lon}&current=temperature_2m,uv_index,wind_speed_10m,wind_direction_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Europe%2FAthens`;
+    const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${EGKALI_BEACH_COORDS.lat}&longitude=${EGKALI_BEACH_COORDS.lon}&current=temperature_2m,wind_speed_10m,wind_direction_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Europe%2FAthens`;
     const response = await fetch(apiUrl, { cache: 'no-store' });
 
     if (!response.ok) {
@@ -718,7 +714,6 @@ async function updateBeachesWeatherData() {
 
     const data = await response.json();
     const temperature = data?.current?.temperature_2m;
-    const uvIndex = data?.current?.uv_index;
     const windSpeed = data?.current?.wind_speed_10m;
     const windDirection = data?.current?.wind_direction_10m;
     const weatherCode = data?.daily?.weather_code?.[0];
@@ -739,8 +734,6 @@ async function updateBeachesWeatherData() {
     } else {
       beachesForecastEl.textContent = t('na');
     }
-
-    beachesUvEl.textContent = typeof uvIndex === 'number' ? `${t('uvPrefix')}: ${uvIndex.toFixed(1)}` : `${t('uvPrefix')}: ${t('na')}`;
 
     if (typeof windSpeed === 'number') {
       const directionLabel = degreesToCompass(windDirection);
@@ -777,7 +770,6 @@ async function updateBeachesWeatherData() {
     beachesForecastEl.textContent = t('na');
     beachesWeatherSymbolEl.innerHTML = getWeatherIconSvg('partly');
     beachesSeaTempEl.textContent = `${t('seaPrefix')}: ${t('na')}`;
-    beachesUvEl.textContent = `${t('uvPrefix')}: ${t('na')}`;
     beachesWindEl.textContent = `${t('na')} / ${t('na')} (--)`;
   }
 }
