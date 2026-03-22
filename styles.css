@@ -11,7 +11,9 @@
 
 /* FONT */
 body {
-  font-family: 'Sora', sans-serif;
+  font-family: 'PP Mori', 'Sora', sans-serif;
+  line-height: 1.5;
+  letter-spacing: 0.005em;
   background: #000;
   color: #fff;
   overflow-x: hidden;
@@ -43,7 +45,7 @@ body {
   color: rgba(255, 255, 255, 0.92);
   min-width: 46px;
   padding: 0.34rem 0.7rem;
-  font-family: 'Sora', sans-serif;
+  font-family: 'PP Mori', 'Sora', sans-serif;
   font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -137,7 +139,7 @@ blockquote,
 q,
 .quote,
 .quote-text {
-  font-family: 'Spectral', serif;
+  font-family: 'PP Mori', 'Sora', sans-serif;
 }
 
 .hero .content {
@@ -182,6 +184,7 @@ q,
 .hero-subtitle {
   margin-bottom: 1rem;
   font-size: 1.2rem;
+  line-height: 1.45;
   opacity: 0.8;
 }
 
@@ -230,7 +233,7 @@ q,
   position: relative;
   display: inline-flex;
   flex-direction: column;
-  font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'PP Mori', 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   gap: 0.48rem;
   padding: 0.88rem 0.94rem 0.84rem;
   border: 1px solid rgba(255, 255, 255, 0.26);
@@ -926,6 +929,8 @@ h2 {
 
 p {
   font-size: 1.2rem;
+  line-height: 1.5;
+  letter-spacing: 0.004em;
   opacity: 0.8;
   margin-bottom: 1rem;
 }
@@ -971,7 +976,7 @@ a {
 }
 
 .outro-footer .outro-studio {
-  font-family: 'Space Grotesk', 'Sora', sans-serif;
+  font-family: 'PP Mori', 'Sora', sans-serif;
   font-weight: 700;
   letter-spacing: 0.02em;
 }
